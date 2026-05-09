@@ -6,7 +6,7 @@
     --for:#121212;
     --six: #f0f0f0;
     --sev: #9d9b9b;
-    --space-normal: 10px;
+    --space-normal: 20px;
     --space-vertical: 5px;
 }
 @font-face {
@@ -57,6 +57,10 @@ button {
     padding: 0;
     margin: 0;
 }
+.gap {
+    height: 60px;
+    width: 100%;
+}
 
 h1 {
     font-size: 28pt;
@@ -65,8 +69,8 @@ h1 {
     margin: 0;
 }
 h2 {
-    font-size: 96pt;
-    line-height: 80pt;
+    font-size: 72pt;
+    line-height: 74pt;
     padding: 0;
     margin: 0;
 }
@@ -84,15 +88,10 @@ p {
 }
 
 a {
-    color: var(--acc);
-    text-decoration: underline;
+    text-decoration: none;
     font-size: 11pt;
     padding: 0;
     margin: 0;
-    font-style: italic;
-}
-a:hover {
-    color: var(--for);
 }
 
 img {
@@ -107,18 +106,25 @@ img {
 .click {
     display: flex;
     justify-content: space-between;
+    height: 50px;
     width: 100%;
-    position: relative;
+    position: fixed;
+    top: 0;
+    z-index: 2;
     margin: 0;
     padding: var(--space-vertical) var(--space-normal);
-    background-color: var(--for);
-    border-bottom: 1px solid var(--sec);
 }
-.click:hover {
-    background-color: var(--pri);
+.click a {
+    color: var(--for);
+    opacity: 0.1;
 }
+.click a:hover {
+    opacity: 1;
+}
+
 .me {
     display: flex;
+    flex-direction: column;
     width: 100%;
     position: fixed;
     bottom: 35px;
@@ -133,10 +139,8 @@ img {
 
 nav {
     width: 100%;
-    position: sticky;
-    top: 0;
-    margin: 0;
-    z-index: 100;
+    position: relative;
+    margin-top: 50px;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
@@ -164,59 +168,21 @@ nav {
     color: var(--sec);
 }
 
-/* Panel */
-.panel {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 0;
-}
-.panel-about {
-  background-color: var(--for);
-  padding: var(--space-vertical) var(--space-normal);
-  border-bottom: 1px solid var(--sec);
-}
-#opening {
-    background-color: var(--pri);
-}
-
-/* Menu Panel */
-#list {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    background-color: var(--for);
-}
-#list .filter-item {
-    text-align: left;
-    padding: var(--space-vertical) var(--space-normal);
-    transition: background-color 0.15s ease;
-    font-size: 28pt;
-    font-weight: 400;
-    line-height: 30pt;
-}
-#list .filter-item:hover {
-    background-color: var(--pri);
-}
-
-/* About Panel */
-#intro {
-    margin: 0;
-    position: relative;
-    justify-content: left;
-    padding: 0;
+/* Top Content */
+article {
     color: var(--for);
-}
-#opening p {
-    margin: 0;
+    margin-top: 100px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
     padding: var(--space-vertical) var(--space-normal);
-    font-size: 18pt;
-    line-height: 22pt;
+}
+article a {
+    all: unset;
 }
 #highlight {
-    color: var(--sev);
+    color: var(--sec);
     font-weight: bold;
     text-transform: capitalize;
 }
@@ -231,37 +197,53 @@ nav {
     background-color: var(--sev);
     padding: 0 5pt;
 }
-#intro a {
-    all: unset;
-    cursor: pointer;
-    text-decoration: underline;
+
+/* Project Panel */
+.panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+}
+.panel-about {
+  padding: var(--space-vertical) var(--space-normal);
 }
 
-#name {
-    color: var(--for);
-    width: 100%;
+/* Menu Panel */
+main {
     position: relative;
-    margin: 0;
-    padding: 0;
+    margin-top: 180px;
+}
+#list {
+    width: 100%;
     display: flex;
-    flex-direction: column;justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    background-color: var(--pri);
 }
-#name p {
-    padding: 3px;
+#list .filter-item {
+    text-align: left;
+    padding: var(--space-vertical) var(--space-normal);
+    transition: background-color 0.15s ease;
+    font-size: 28pt;
+    font-weight: 400;
+    line-height: 30pt;
 }
-#name h1 {
-    padding: var(--space-normal) 0;
+#list .filter-item:hover {
+    background-color: var(--pri);
 }
 
+
+/* BOTTOM CONTACT */
 #contact {
     position: fixed;
     bottom: 0;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: var(--space-vertical) 15px;
-    border-top: 1px solid var(--sec);
-    background-color: var(--for);
+    padding: var(--space-vertical) var(--space-normal);
+    background-color: var(--pri);
 }
 #contact a {
     color: var(--sev);
@@ -274,18 +256,17 @@ nav {
 .work-list.grid-view {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    padding: var(--space-vertical) var(--space-normal);
+    gap: var(--space-vertical);
 }
 .grid-view .work {
     display: flex;
     flex-direction: column;
-    background-color: var(--for);
     color: var(--acc);
     text-decoration: none;
 }
 .grid-view .desc {
-    padding: var(--space-vertical) var(--space-normal);
-    border-top: 1px solid var(--sec);
-    text-transform: uppercase;
+    padding: var(--space-vertical);
     color:var(--sev);
 }
 .grid-view .work img {
@@ -314,10 +295,9 @@ nav {
     display: grid;
     grid-template-columns: 1.7fr 1fr 1.5fr;
     align-items: center;
-    padding: var(--space-vertical) 15px;
+    padding: var(--space-vertical) var(--space-normal);
     border-bottom: 1px solid var(--sec);
-    background-color: var(--for);
-    color: var(--);
+    color: var(--for);
     text-decoration: none;
 }
 .list-view .work:hover {
@@ -376,26 +356,83 @@ nav {
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    padding: var(--space-vertical);
+    padding: var(--space-vertical) var(--space-normal);
     background-color: transparent;
 }
 
 .view-switch button {
     all: unset;
-    color: var(--sev);
+    color: var(--acc);
     font-size: 28pt;
     font-weight: 400;
     line-height: 30pt;
-    background-color: var(--for);
-}
-#list-view {
-    padding: 0 var(--space-normal);
+    background-color: var(--sev);
 }
 
 .view-switch button:hover,
 .view-switch button.active {
     color: var(--for);
     background-color: var(--pri);
+}
+
+/* PROJECT PAGE */
+#headimage {
+    position: relative;
+    height: 880px;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+#headimage img{
+    width: 100%;
+    height: 880px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+#projectpanel {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 880px;
+    height: auto;
+    width: 100%;
+    background-color: var(--for);
+    color: var(--acc);
+    padding: var(--space-vertical) var(--space-normal);
+    overflow: hidden;
+}
+#pjname {
+    width: 100%;
+}
+#pdbox {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+#short {
+    display: flex;
+    flex-direction: column;
+}
+.halfimage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+#closing {
+    rotate: 20deg;
+}
+#closing:hover {
+    rotate: 0deg;
+    transition: rotate 0.15s ease-in-out;
+}
+.end {
+    width: 100%;
+    height: 600px;
+    background-color: var(--for);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    z-index: 1;
 }
 
 @media screen and (max-width: 1080px) {
@@ -419,6 +456,10 @@ nav {
     }
     #list {
         padding: var(--space-vertical) 0;
+    }
+    #pdbox {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 }
 @media screen and (max-width: 480px){
