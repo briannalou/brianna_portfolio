@@ -3,34 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Projects</title>
+    <title>All Projects — Brianna Lou</title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/style.css">
-
+    <link rel="stylesheet" href="/projects/projects.css">
 </head>
 <body>
-    <div class="click">
-        <a href="/index.html"><h1>BriannaLou</h1></a>
-        <a href="/about/index.html"><h1>About</h1></a>
-        <a href="/projects/index.html">
-        <h1>All Projects</h1></a>
-    </div>
-
-    <nav>
-        <div class="nav-block">
-            <div id="menu" class="panel">
-                <div class="view-switch">
-                    <button id="grid-view" type="button">GRID</button>
-                    <button id="list-view" type="button">LIST</button>
-                </div>
-                <div id="list"></div>
-            </div>
-        </div>
-        
+    <nav class="pill-nav">
+        <span class="pill-nav__slider"></span>
+        <a href="/index.html">Brianna Lou</a>
+        <a href="/projects/index.html">All Projects</a>
+        <a href="/about/index.html">About</a>
     </nav>
 
-    <main class="work-list"></main>
+    <header class="pj-header">
+        <div class="pj-controls">
+            <div id="list"></div>
+            <div class="pj-view">
+                <button id="grid-view" type="button">Grid</button>
+                <button id="list-view" type="button">List</button>
+            </div>
+        </div>
+    </header>
 
+    <div class="work-list"></div>
+
+    <div class="contact-widget">
+        <div class="contact-widget__popup">
+            <p class="contact-widget__caption">↗ Open Links</p>
+            <div class="contact-widget__menu">
+                <span class="contact-widget__slider"></span>
+                <a href="mailto:briannalou453@gmail.com" class="contact-widget__link">Email</a>
+                <a href="https://instagram.com/bri_l85" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="#" class="contact-widget__link">Portfolio</a>
+                <a href="/media/resume%20product.pdf" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
+        </div>
+        <button class="contact-widget__trigger" type="button" aria-label="Open contact menu" aria-expanded="false"><span>BL</span></button>
+    </div>
 
     <script src="/data.js"></script>
     <script src="/script.js"></script>

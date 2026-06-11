@@ -9,27 +9,33 @@
 
 </head>
 <body>
-    <div class="click">
-        <a href="/index.html"><h1>BriannaLou</h1></a>
-        <a href="/about/index.html"><h1>About</h1></a>
-        <a href="/projects/index.html">
-        <h1>All Projects</h1></a>
-    </div>
+    <nav class="pill-nav">
+        <span class="pill-nav__slider"></span>
+        <a href="/index.html">Brianna Lou</a>
+        <a href="/projects/index.html">All Projects</a>
+        <a href="/about/index.html">About</a>
+    </nav>
 
     <article>
-        <p>Hi!</p>
-        <p>I’m a <span id="light">designer</span> working <span id="light">across prints and digital.</span> Especially drawn to all kinds of <span id="light">interaction,</span> I care about how <span id="light">users</span> connect with the design. Example of creations include: intriguing usable products, playful websites, and experimental events. <span id="highlight"><a href="/projects/index.html">Dive in to explore more!</a></span></p>
-        <p>Best,</p>
+        <p>Hi! I’m a designer working across prints and digital. Especially drawn to all kinds of interaction, I care about how connect with the design. Example of creations include: intriguing usable products, playful websites, and experimental events.</p>
     </article>
     
-    <div class="me">
-        <h2>Brianna</h2>
-        <h2>20:00, Newyork, NY</h2>
-    </div>
+    <h2 id="ny-clock"></h2>
+    
 
-    <div id="contact">
-        <h3><a href="briannalou453@gmail.com">briannalou453@gmail.com</a></h3>
-        <h3><a href="https://www.instagram.com/bri_l85/" target="_blank">IG: bri_l85</a></h3>
+
+    <div class="contact-widget">
+        <div class="contact-widget__popup">
+            <p class="contact-widget__caption">↗ Open Links</p>
+            <div class="contact-widget__menu">
+                <span class="contact-widget__slider"></span>
+                <a href="mailto:briannalou453@gmail.com" class="contact-widget__link">Email</a>
+                <a href="https://instagram.com/bri_l85" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="#" class="contact-widget__link">Portfolio</a>
+                <a href="/media/resume%20product.pdf" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
+        </div>
+        <button class="contact-widget__trigger" type="button" aria-label="Open contact menu" aria-expanded="false"><span>BL</span></button>
     </div>
 
     <script src="/data.js"></script>

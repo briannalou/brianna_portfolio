@@ -3,9 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inside Out — Brianna Lou</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/projects/project.css">
 </head>
 <body>
-    
+    <nav class="pill-nav">
+        <span class="pill-nav__slider"></span>
+        <a href="/index.html">Brianna Lou</a>
+        <a href="/projects/index.html">All Projects</a>
+        <a href="/about/index.html">About</a>
+    </nav>
+
+    <div class="pj-hero">
+        <img src="/media/insideout.jpg" alt="Inside Out cover">
+    </div>
+
+    <div class="pj-info">
+        <h1 class="pj-title">Inside Out</h1>
+        <div class="pj-tags">
+            <span class="pj-tag">2023</span>
+            <span class="pj-tag">Nature</span>
+            <span class="pj-tag">Digital</span>
+        </div>
+        <p class="pj-desc">A nature-inspired digital series examining the boundary between interior and exterior spaces, exploring what it means to feel at home in an environment.</p>
+        <div class="pj-meta">
+            <div class="pj-detail">
+                <span class="pj-detail__label">Role</span>
+                <span class="pj-detail__value">Visual Designer</span>
+            </div>
+            <div class="pj-detail">
+                <span class="pj-detail__label">Tools</span>
+                <span class="pj-detail__value">Figma, Photoshop</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pj-gallery">
+        <img src="/media/insideout-1.jpg" alt="">
+
+        <div class="pj-section">
+            <span class="pj-section__label">Concept</span>
+            <p class="pj-section__body">Inside Out began with the observation that the spaces we inhabit quietly shape who we become in them. The series explores thresholds — windows, doorways, edges — as places where inside and outside blur and identity becomes negotiable.</p>
+        </div>
+
+        <div class="pj-gallery__half">
+            <img src="/media/insideout-2.jpg" alt="">
+            <img src="/media/insideout-3.jpg" alt="">
+        </div>
+
+        <div class="pj-section">
+            <span class="pj-section__label">Reflection</span>
+            <p class="pj-section__body">Working with natural textures and organic forms shifted the project away from clean digital rendering toward something more tactile. The final pieces were meant to feel like something found rather than made.</p>
+        </div>
+
+        <img src="/media/insideout-4.jpg" alt="">
+    </div>
+
+    <div class="pj-end">
+        <a href="/projects/music.html" class="pj-end__link">
+            <span class="pj-end__label">Previous</span>
+            <span class="pj-end__name">← Music+</span>
+        </a>
+        <a href="/projects/universe.html" class="pj-end__link pj-end__link--next">
+            <span class="pj-end__label">Next</span>
+            <span class="pj-end__name">Mirrored Universe →</span>
+        </a>
+    </div>
+
+    <button class="pj-back" onclick="history.length > 1 ? history.back() : window.location.href='/projects/index.html'" aria-label="Go back"><span>←</span></button>
+
+    <div class="contact-widget">
+        <div class="contact-widget__popup">
+            <p class="contact-widget__caption">↗ Open Links</p>
+            <div class="contact-widget__menu">
+                <span class="contact-widget__slider"></span>
+                <a href="mailto:briannalou453@gmail.com" class="contact-widget__link">Email</a>
+                <a href="https://instagram.com/bri_l85" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="#" class="contact-widget__link">Portfolio</a>
+                <a href="/media/resume%20product.pdf" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
+        </div>
+        <button class="contact-widget__trigger" type="button" aria-label="Open contact menu" aria-expanded="false"><span>BL</span></button>
+    </div>
+
+    <script src="/data.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>

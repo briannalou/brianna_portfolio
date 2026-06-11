@@ -1,0 +1,289 @@
+/* ── Orbit container ──────────────────────────────────────────────────── */
+/*
+   The hero is flex-centred inside the orbit.
+   Interest items are absolute children of .interests__field,
+   which stretches to fill the entire orbit area.
+*/
+
+.about-orbit {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+
+.about-hero {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+}
+
+.about-hero__photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    image-rendering: auto;
+    border: 1px solid var(--pri);
+    flex-shrink: 0;
+}
+
+.about-hero__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    max-width: 640px;
+}
+
+.about-hero__name  { color: var(--for); }
+
+.about-hero__intro {
+    color: var(--for);
+    font-size: 14pt;
+    line-height: 20pt;
+    max-width: 480px;
+    opacity: 0.4;
+}
+
+/* ── Floating field ───────────────────────────────────────────────────── */
+
+.interests__field {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.interests__field > * {
+    position: absolute;
+    pointer-events: auto;
+}
+
+/* ── Item positions ───────────────────────────────────────────────────── */
+
+/* left column */
+.vinyl-unit--a   { top: 6%;    left: 2%;   transform: rotate(-2.5deg); }
+.interest-tag--2 { top: 46%;   left: 1%;   transform: rotate(3.5deg);  }
+.vinyl-unit--c   { bottom: 6%; left: 3%;   transform: rotate(-2deg);   }
+
+/* right column */
+.img-blob--a     { top: 8%;    right: 3%;  }
+.vinyl-unit--b   { top: 36%;   right: 2%;  transform: rotate(1.5deg);  }
+.img-blob--b     { bottom: 8%; right: 4%;  }
+
+/* top strip */
+.interest-tag--1 { top: 2%;    left: 28%;  transform: rotate(-2deg);   }
+.interest-tag--4 { top: 2%;    right: 20%; transform: rotate(2deg);    }
+
+/* bottom strip */
+.interest-tag--3 { bottom: 2%; right: 22%; transform: rotate(-1.5deg); }
+
+/* ── Vinyl / Spotify-style player ────────────────────────────────────── */
+
+.vinyl-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.vinyl {
+    position: relative;
+    width: 156px;
+    height: 156px;
+    border-radius: 50%;
+    background-color: #2b2920;
+    overflow: hidden;
+    cursor: pointer;
+    animation: vinyl-spin 9s linear infinite;
+    animation-play-state: paused;
+    transition: box-shadow 0.2s ease;
+}
+
+.vinyl::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        transparent 27%, rgba(255,255,255,0.05) 28%, transparent 29%,
+        transparent 36%, rgba(255,255,255,0.04) 37%, transparent 38%,
+        transparent 45%, rgba(255,255,255,0.03) 46%, transparent 47%
+    );
+    pointer-events: none;
+    z-index: 3;
+}
+
+.vinyl:hover {
+    animation-play-state: running;
+    box-shadow: 0 6px 24px rgba(87, 84, 58, 0.22);
+}
+
+.vinyl img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 52%;
+    height: 52%;
+    border-radius: 50%;
+    object-fit: cover;
+    image-rendering: auto;
+    z-index: 1;
+}
+
+.vinyl__hole {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--six);
+    z-index: 4;
+}
+
+.vinyl__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    width: 156px;
+}
+
+.vinyl__track {
+    display: block;
+    color: var(--for);
+    font-family: 'babel';
+    font-size: 10pt;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    line-height: 1.3;
+}
+
+.vinyl__artist {
+    display: block;
+    color: var(--sev);
+    font-family: 'babel';
+    font-size: 9pt;
+    text-align: center;
+    line-height: 1.3;
+}
+
+@keyframes vinyl-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ───────────────────────────────────── */
+
+.img-blob {
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid var(--pri);
+    flex-shrink: 0;
+}
+
+.img-blob img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: auto;
+}
+
+.img-blob--a {
+    width: 118px;
+    height: 118px;
+    animation: float-a 4.5s ease-in-out infinite;
+}
+
+.img-blob--b {
+    width: 94px;
+    height: 94px;
+    animation: float-b 5.2s ease-in-out infinite;
+}
+
+@keyframes float-a {
+    0%, 100% { transform: rotate(5deg) translateY(0);    }
+    50%       { transform: rotate(5deg) translateY(-10px); }
+}
+
+@keyframes float-b {
+    0%, 100% { transform: rotate(-4deg) translateY(0);   }
+    50%       { transform: rotate(-4deg) translateY(-8px); }
+}
+
+/* ── Interest tags ────────────────────────────────────────────────────── */
+
+.interest-tag {
+    display: inline-block;
+    color: var(--for);
+    font-family: 'babel';
+    font-size: 10pt;
+    line-height: 1;
+    border: 1px solid var(--pri);
+    border-radius: 50px;
+    padding: 7px 16px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background-color 0.15s ease;
+}
+
+.interest-tag:hover { background-color: var(--pri); }
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+
+/* Tighter floating range on mid-size screens */
+@media screen and (max-width: 960px) {
+
+    .vinyl { width: 130px; height: 130px; }
+    .vinyl__meta { width: 130px; }
+
+    /* pull side items flush to edges */
+    .vinyl-unit--a   { left: 0;   }
+    .vinyl-unit--b   { right: 0;  }
+    .vinyl-unit--c   { left: 0;   }
+    .img-blob--a     { right: 0;  }
+    .img-blob--b     { right: 0;  }
+    .interest-tag--2 { left: 0;   }
+
+    /* pull top / bottom inward items back toward edges */
+    .interest-tag--1 { left: 18%;  }
+    .interest-tag--4 { right: 14%; }
+    .interest-tag--3 { right: 14%; }
+}
+
+/* Compact floating area on mobile */
+@media screen and (max-width: 680px) {
+
+    .about-orbit { min-height: 750px; }
+
+    .img-blob--a { animation: none; }
+    .img-blob--b { animation: none; }
+
+    .vinyl { width: 80px; height: 80px; }
+    .vinyl__meta { width: 80px; }
+    .vinyl__track { font-size: 8pt; opacity: 0.4; }
+    .vinyl__artist { font-size: 7.5pt; }
+
+    .img-blob--a { width: 66px; height: 66px; }
+    .img-blob--b { width: 54px; height: 54px; }
+
+    .interest-tag { font-size: 9pt; padding: 5px 12px; opacity: 0.4; }
+
+    .about-hero__photo { width: 120px; height: 120px; }
+    .about-hero__intro { font-size: 14pt; line-height: 18pt; max-width: 280px; opacity: 1; }
+}

@@ -3,9 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Moma PSX — Brianna Lou</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/projects/project.css">
 </head>
 <body>
-    
+    <nav class="pill-nav">
+        <span class="pill-nav__slider"></span>
+        <a href="/index.html">Brianna Lou</a>
+        <a href="/projects/index.html">All Projects</a>
+        <a href="/about/index.html">About</a>
+    </nav>
+
+    <div class="pj-hero">
+        <img src="/media/psx-1.jpg" alt="Moma PSX cover">
+    </div>
+
+    <div class="pj-info">
+        <h1 class="pj-title">Moma PSX</h1>
+        <div class="pj-tags">
+            <span class="pj-tag">2025</span>
+            <span class="pj-tag">Branding</span>
+            <span class="pj-tag">Digital</span>
+        </div>
+        <p class="pj-desc">A brand identity and digital experience exploring the intersection of gaming culture and contemporary art, developed for a MoMA special exhibition.</p>
+        <div class="pj-meta">
+            <div class="pj-detail">
+                <span class="pj-detail__label">Role</span>
+                <span class="pj-detail__value">Brand Designer</span>
+            </div>
+            <div class="pj-detail">
+                <span class="pj-detail__label">Tools</span>
+                <span class="pj-detail__value">Figma, Illustrator</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pj-gallery">
+        <img src="/media/psx-2.jpg" alt="">
+
+        <div class="pj-gallery__half">
+            <img src="/media/psx-3.jpg" alt="">
+            <img src="/media/psx-7.jpg" alt="">
+        </div>
+
+        <div class="pj-section">
+            <span class="pj-section__label">Concept</span>
+            <p class="pj-section__body">MoMA PSX grew out of a tension between institutional gravity and the irreverent energy of early gaming culture. The brand identity had to hold both — serious enough for the museum context, strange enough to feel true to the subject matter.</p>
+        </div>
+
+        <div class="pj-gallery__half">
+            <img src="/media/psx-4.jpg" alt="">
+            <img src="/media/psx-8.jpg" alt="">
+        </div>
+
+        <img src="/media/psx-5.jpg" alt="">
+        <img src="/media/psx-9.jpg" alt="">
+        
+        <div class="pj-section">
+            <span class="pj-section__label">Outcome</span>
+            <p class="pj-section__body">A visual system that borrowed from hardware packaging, pixel art conventions, and exhibition design — applied across digital environments, printed collateral, and wayfinding for the gallery space.</p>
+        </div>
+
+        <img src="/media/psx-6.jpg" alt="">
+    </div>
+
+    <div class="pj-end">
+        <a href="/projects/habit.html" class="pj-end__link">
+            <span class="pj-end__label">Previous</span>
+            <span class="pj-end__name">← With Habit</span>
+        </a>
+        <a href="/projects/echo.html" class="pj-end__link pj-end__link--next">
+            <span class="pj-end__label">Next</span>
+            <span class="pj-end__name">Echo →</span>
+        </a>
+    </div>
+
+    <button class="pj-back" onclick="history.length > 1 ? history.back() : window.location.href='/projects/index.html'" aria-label="Go back"><span>←</span></button>
+
+    <div class="contact-widget">
+        <div class="contact-widget__popup">
+            <p class="contact-widget__caption">↗ Open Links</p>
+            <div class="contact-widget__menu">
+                <span class="contact-widget__slider"></span>
+                <a href="mailto:briannalou453@gmail.com" class="contact-widget__link">Email</a>
+                <a href="https://instagram.com/bri_l85" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="#" class="contact-widget__link">Portfolio</a>
+                <a href="/media/resume%20product.pdf" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
+        </div>
+        <button class="contact-widget__trigger" type="button" aria-label="Open contact menu" aria-expanded="false"><span>BL</span></button>
+    </div>
+
+    <script src="/data.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,230 @@
+/* ── Page header ───────────────────────────────────────────────────────── */
+
+.pj-header {
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-bottom: 1px solid var(--pri);
+}
+
+.pj-controls {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* ── Filter bar ────────────────────────────────────────────────────────── */
+
+#list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex: 1;
+}
+
+.filter-item {
+    all: unset;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'babel';
+    font-size: 10pt;
+    line-height: 1;
+    color: var(--sev);
+    border: 1px solid var(--pri);
+    border-radius: 50px;
+    padding: 5px 14px;
+    white-space: nowrap;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.filter-item:hover { color: var(--for); }
+
+.filter-item.active {
+    color: var(--for);
+    background-color: var(--pri);
+}
+
+/* ── View toggle ───────────────────────────────────────────────────────── */
+
+.pj-view {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+#grid-view,
+#list-view {
+    all: unset;
+    cursor: pointer;
+    font-family: 'babel';
+    font-size: 10pt;
+    color: var(--sev);
+    transition: color 0.15s ease;
+}
+
+#grid-view:hover, #list-view:hover,
+#grid-view.active, #list-view.active {
+    color: var(--for);
+}
+
+/* ── Grid view ─────────────────────────────────────────────────────────── */
+
+.work-list.grid-view {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    padding-bottom: 120px;
+}
+
+.grid-view .work {
+    display: flex;
+    flex-direction: column-reverse;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.grid-view .work img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    image-rendering: auto;
+    transition: opacity 0.25s ease;
+}
+
+.grid-view .work:hover img {
+    opacity: 0.6;
+}
+
+.grid-view .desc {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 2px 16px;
+}
+
+.grid-view .desc h3 {
+    color: var(--for);
+    font-size: 28pt;
+    font-weight: 400;
+    line-height: 34pt;
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+}
+
+.grid-view .desc__year {
+    font-size: 28pt;
+    font-weight: 400;
+    line-height: 34pt;
+    color: var(--pri);
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* ── List view ─────────────────────────────────────────────────────────── */
+
+.work-list.list-view {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--pri);
+    padding-bottom: 120px;
+}
+
+.list-view .work {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.5fr 0.5fr 1.2fr;
+    align-items: center;
+    padding: var(--space-vertical) 0;
+    border-bottom: 1px solid var(--pri);
+    color: var(--for);
+    text-decoration: none;
+    overflow: hidden;
+    transition: background-color 0.15s ease;
+}
+
+.list-view .work:hover {
+    background-color: var(--pri);
+}
+
+.list-view .meta {
+    display: contents;
+}
+
+.list-view .meta p,
+.list-view .meta h3 {
+    margin: 0;
+}
+
+.list-view .meta p { color: var(--for); }
+.list-view .meta h3 { color: var(--sev); }
+
+.list-view .hover-image {
+    position: absolute;
+    right: 80px;
+    top: 50%;
+    width: 160px;
+    opacity: 0;
+    z-index: 10;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: opacity 0.2s ease;
+    border: 1px solid var(--pri);
+}
+
+.list-view .hover-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    image-rendering: auto;
+}
+
+.list-view .work:hover .hover-image {
+    opacity: 1;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 1080px) {
+    .work-list.grid-view {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .filter-item {
+        font-size: 14pt;
+    }
+    #grid-view,
+    #list-view {
+        font-size: 14pt;
+    }
+    .list-view .work {
+        grid-template-columns: 1.8fr 0.6fr;
+    }
+
+    .list-view .meta h3:last-child,
+    .list-view .hover-image {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .work-list.grid-view {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+
+    .list-view .work {
+        grid-template-columns: 1fr;
+    }
+
+    .list-view .meta h3 {
+        display: none;
+    }
+}

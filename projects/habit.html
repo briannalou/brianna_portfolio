@@ -3,49 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>With Habit — Brianna Lou</title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/projects/project.css">
 </head>
 <body>
-    <div class="click">
-        <a href="/index.html"><h1>BriannaLou</h1></a>
-        <a href="/about/index.html"><h1>About</h1></a>
-        <a href="/projects/index.html">
-        <h1>All Projects</h1></a>
+    <nav class="pill-nav">
+        <span class="pill-nav__slider"></span>
+        <a href="/index.html">Brianna Lou</a>
+        <a href="/projects/index.html">All Projects</a>
+        <a href="/about/index.html">About</a>
+    </nav>
+
+    <div class="pj-hero">
+        <img src="/media/withhabit-1.jpg" alt="With Habit cover">
     </div>
 
-    <div id="headimage">
-        <img src="/media/withhabit-1.jpg" alt="">
-    </div>
-    <div id="projectpanel">
-        <h2 id="pjname">With Habit</h2>
-        <span id="pdbox"">
-            <div id="short">
-                <h1>Year: 2026 Feb</h1>
+    <div class="pj-info">
+        <h1 class="pj-title">With Habit</h1>
+        <div class="pj-tags">
+            <span class="pj-tag">2026</span>
+            <span class="pj-tag">Product</span>
+            <span class="pj-tag">Print</span>
+        </div>
+        <p class="pj-desc">A wellness and habit tracking product combining print and digital touchpoints to help users build sustainable routines through gentle daily structure.</p>
+        <div class="pj-meta">
+            <div class="pj-detail">
+                <span class="pj-detail__label">Role</span>
+                <span class="pj-detail__value">Product Designer</span>
             </div>
-            <p>efboqi fhoasufbo bcoaisn idonincin casidjo caaad aaadciiin efboqi fhoasufbo bcoaisn idonincin casidjo caaad aaadciiin efboqi fhoasufbo bcoaisn idonincin casidjo caaad aaadciiin</p>
-        </span>
-        <div class="gap"></div>
+            <div class="pj-detail">
+                <span class="pj-detail__label">Tools</span>
+                <span class="pj-detail__value">Figma, Illustrator</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pj-gallery">
         <img src="/media/withhabit-2.jpg" alt="">
-        <div class="halfimage">
+
+        <div class="pj-section">
+            <span class="pj-section__label">Concept</span>
+            <p class="pj-section__body">The project began with a simple question: how do small, repeated actions compound into meaningful change? With Habit explores the tactile ritual of daily tracking — making the invisible visible through print and digital touchpoints designed to fit quietly into everyday life.</p>
+        </div>
+
+        <div class="pj-gallery__half">
             <img src="/media/withhabit-3.jpg" alt="">
             <img src="/media/withhabit-4.jpg" alt="">
         </div>
         <img src="/media/withhabit-5.jpg" alt="">
+
+        <div class="pj-section">
+            <span class="pj-section__label">Process</span>
+            <p class="pj-section__body">Prototyping moved between analog and digital — hand-drawn tracker templates, A5 booklets, and a companion app that translated logged habits into gentle weekly reflections. The goal was always texture: something worth picking up.</p>
+        </div>
+
         <img src="/media/withhabit-6.jpg" alt="">
         <img src="/media/withhabit-7.jpg" alt="">
         <img src="/media/withhabit-8.jpg" alt="">
         <img src="/media/withhabit-9.jpg" alt="">
-        <img id="closing" src="/media/withhabit-10.jpg" alt="">
-        <div class="end">
-            <h2>(Previous</h2>
-            <h2>Next)</h2>
-        </div>
+        <img src="/media/withhabit-10.jpg" alt="">
     </div>
 
-    
-    
+    <div class="pj-end">
+        <a href="/projects/universe.html" class="pj-end__link">
+            <span class="pj-end__label">Previous</span>
+            <span class="pj-end__name">← Mirrored Universe</span>
+        </a>
+        <a href="/projects/psx.html" class="pj-end__link pj-end__link--next">
+            <span class="pj-end__label">Next</span>
+            <span class="pj-end__name">Moma PSX →</span>
+        </a>
+    </div>
+
+    <button class="pj-back" onclick="history.length > 1 ? history.back() : window.location.href='/projects/index.html'" aria-label="Go back"><span>←</span></button>
+
+    <div class="contact-widget">
+        <div class="contact-widget__popup">
+            <p class="contact-widget__caption">↗ Open Links</p>
+            <div class="contact-widget__menu">
+                <span class="contact-widget__slider"></span>
+                <a href="mailto:briannalou453@gmail.com" class="contact-widget__link">Email</a>
+                <a href="https://instagram.com/bri_l85" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="#" class="contact-widget__link">Portfolio</a>
+                <a href="/media/resume%20product.pdf" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
+        </div>
+        <button class="contact-widget__trigger" type="button" aria-label="Open contact menu" aria-expanded="false"><span>BL</span></button>
+    </div>
 
     <script src="/data.js"></script>
     <script src="/script.js"></script>

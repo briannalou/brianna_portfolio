@@ -3,9 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Music+ — Brianna Lou</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/projects/project.css">
 </head>
 <body>
-    
+    <nav class="pill-nav">
+        <span class="pill-nav__slider"></span>
+        <a href="/index.html">Brianna Lou</a>
+        <a href="/projects/index.html">All Projects</a>
+        <a href="/about/index.html">About</a>
+    </nav>
+
+    <div class="pj-hero">
+        <img src="/media/music1.jpg" alt="Music+ cover">
+    </div>
+
+    <div class="pj-info">
+        <h1 class="pj-title">Music+</h1>
+        <div class="pj-tags">
+            <span class="pj-tag">2024</span>
+            <span class="pj-tag">Media</span>
+            <span class="pj-tag">Digital</span>
+            <span class="pj-tag">App</span>
+        </div>
+        <p class="pj-desc">A music discovery and streaming app reimagining how listeners explore, collect, and connect with sound across taste profiles and shared listening sessions.</p>
+        <div class="pj-meta">
+            <div class="pj-detail">
+                <span class="pj-detail__label">Role</span>
+                <span class="pj-detail__value">Product Designer</span>
+            </div>
+            <div class="pj-detail">
+                <span class="pj-detail__label">Tools</span>
+                <span class="pj-detail__value">Figma, After Effects</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pj-gallery">
+        <img src="/media/music-2.jpg" alt="">
+        <img src="/media/music-3.jpg" alt="">
+
+        <div class="pj-section">
+            <span class="pj-section__label">Concept</span>
+            <p class="pj-section__body">Music+ was a response to the way streaming flattened music into background noise. The goal was to restore some of the ceremony of listening — the ritual of choosing, the weight of a record, the way a shared playlist becomes a kind of language between people.</p>
+        </div>
+
+        <img src="/media/music-1.jpg" alt="">
+
+        <div class="pj-section">
+            <span class="pj-section__label">Process</span>
+            <p class="pj-section__body">Early explorations focused on the physicality of collection — crate-digging translated to digital stacks, liner notes as a design element, and social listening that didn't require a feed.</p>
+        </div>
+
+        <img src="/media/music-4.jpg" alt="">
+        <img src="/media/music-5.jpg" alt="">
+        <img src="/media/music-6.jpg" alt="">
+    </div>
+
+    <div class="pj-end">
+        <a href="/projects/upcyclo.html" class="pj-end__link">
+            <span class="pj-end__label">Previous</span>
+            <span class="pj-end__name">← Upcyclo</span>
+        </a>
+        <a href="/projects/inout.html" class="pj-end__link pj-end__link--next">
+            <span class="pj-end__label">Next</span>
+            <span class="pj-end__name">Inside Out →</span>
+        </a>
+    </div>
+
+    <button class="pj-back" onclick="history.length > 1 ? history.back() : window.location.href='/projects/index.html'" aria-label="Go back"><span>←</span></button>
+
+    <div class="contact-widget">
+        <div class="contact-widget__popup">
+            <p class="contact-widget__caption">↗ Open Links</p>
+            <div class="contact-widget__menu">
+                <span class="contact-widget__slider"></span>
+                <a href="mailto:briannalou453@gmail.com" class="contact-widget__link">Email</a>
+                <a href="https://instagram.com/bri_l85" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="#" class="contact-widget__link">Portfolio</a>
+                <a href="/media/resume%20product.pdf" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
+        </div>
+        <button class="contact-widget__trigger" type="button" aria-label="Open contact menu" aria-expanded="false"><span>BL</span></button>
+    </div>
+
+    <script src="/data.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>

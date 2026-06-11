@@ -3,9 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Echo — Brianna Lou</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/projects/project.css">
 </head>
 <body>
-    
+    <nav class="pill-nav">
+        <span class="pill-nav__slider"></span>
+        <a href="/index.html">Brianna Lou</a>
+        <a href="/projects/index.html">All Projects</a>
+        <a href="/about/index.html">About</a>
+    </nav>
+
+    <div class="pj-hero">
+        <img src="/media/echo-1.jpg" alt="Echo cover">
+    </div>
+
+    <div class="pj-info">
+        <h1 class="pj-title">Echo</h1>
+        <div class="pj-tags">
+            <span class="pj-tag">2025</span>
+            <span class="pj-tag">Connection</span>
+            <span class="pj-tag">Digital</span>
+            <span class="pj-tag">App</span>
+        </div>
+        <p class="pj-desc">A connection app designed to bring people together through shared moments, ambient presence, and gentle nudges that reduce the friction of staying in touch.</p>
+        <div class="pj-meta">
+            <div class="pj-detail">
+                <span class="pj-detail__label">Role</span>
+                <span class="pj-detail__value">UX/UI Designer</span>
+            </div>
+            <div class="pj-detail">
+                <span class="pj-detail__label">Tools</span>
+                <span class="pj-detail__value">Figma, Protopie</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pj-gallery">
+        <img src="/media/echo-7.jpg" alt="">
+
+        <div class="pj-section">
+            <span class="pj-section__label">Concept</span>
+            <p class="pj-section__body">Echo started as a response to the friction of keeping up — the mental overhead of remembering to reach out, of wondering whether someone is thinking of you too. The app was designed to feel less like a communication tool and more like a quiet shared room.</p>
+        </div>
+
+        <img src="/media/echo-4.jpg" alt="">
+        <img src="/media/echo-5.jpg" alt="">
+
+        <div class="pj-section">
+            <span class="pj-section__label">Reflection</span>
+            <p class="pj-section__body">The hardest design challenge was restraint — building features that felt present without demanding attention. Ambient presence cues, passive check-ins, and optional nudges replaced feeds and notifications entirely.</p>
+        </div>
+
+        <div class="pj-gallery__half">
+            <img src="/media/echo-8.jpg" alt="">
+            <img src="/media/echo-9.jpg" alt="">
+        </div>
+        <div class="pj-gallery__half">
+            <img src="/media/echo-10.jpg" alt="">
+            <img src="/media/echo-11.jpg" alt="">
+        </div>
+
+        <img src="/media/echo-12.jpg" alt="">
+    </div>
+
+    <div class="pj-end">
+        <a href="/projects/psx.html" class="pj-end__link">
+            <span class="pj-end__label">Previous</span>
+            <span class="pj-end__name">← Moma PSX</span>
+        </a>
+        <a href="/projects/upcyclo.html" class="pj-end__link pj-end__link--next">
+            <span class="pj-end__label">Next</span>
+            <span class="pj-end__name">Upcyclo →</span>
+        </a>
+    </div>
+
+    <button class="pj-back" onclick="history.length > 1 ? history.back() : window.location.href='/projects/index.html'" aria-label="Go back"><span>←</span></button>
+
+    <div class="contact-widget">
+        <div class="contact-widget__popup">
+            <p class="contact-widget__caption">↗ Open Links</p>
+            <div class="contact-widget__menu">
+                <span class="contact-widget__slider"></span>
+                <a href="mailto:briannalou453@gmail.com" class="contact-widget__link">Email</a>
+                <a href="https://instagram.com/bri_l85" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="#" class="contact-widget__link">Portfolio</a>
+                <a href="/media/resume%20product.pdf" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
+        </div>
+        <button class="contact-widget__trigger" type="button" aria-label="Open contact menu" aria-expanded="false"><span>BL</span></button>
+    </div>
+
+    <script src="/data.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>

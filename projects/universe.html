@@ -3,9 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mirrored Universe — Brianna Lou</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/projects/project.css">
 </head>
 <body>
-    
+    <nav class="pill-nav">
+        <span class="pill-nav__slider"></span>
+        <a href="/index.html">Brianna Lou</a>
+        <a href="/projects/index.html">All Projects</a>
+        <a href="/about/index.html">About</a>
+    </nav>
+
+    <div class="pj-hero">
+        <img src="/media/universe.jpg" alt="Mirrored Universe cover">
+    </div>
+
+    <div class="pj-info">
+        <h1 class="pj-title">Mirrored Universe</h1>
+        <div class="pj-tags">
+            <span class="pj-tag">2023</span>
+            <span class="pj-tag">Film</span>
+            <span class="pj-tag">Digital</span>
+            <span class="pj-tag">Print</span>
+        </div>
+        <p class="pj-desc">A multimedia project blending film, print, and digital to explore themes of reflection and mirrored realities — how we perceive ourselves through the lens of another world.</p>
+        <div class="pj-meta">
+            <div class="pj-detail">
+                <span class="pj-detail__label">Role</span>
+                <span class="pj-detail__value">Creative Director</span>
+            </div>
+            <div class="pj-detail">
+                <span class="pj-detail__label">Tools</span>
+                <span class="pj-detail__value">Premiere Pro, Photoshop</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pj-gallery">
+        <img src="/media/universe-1.jpg" alt="">
+
+        <div class="pj-section">
+            <span class="pj-section__label">Concept</span>
+            <p class="pj-section__body">Mirrored Universe started as a thought experiment: if you could step into the reflection, what would you find? The project used film, print, and digital layering to construct an alternate version of familiar spaces — recognizable but slightly wrong.</p>
+        </div>
+
+        <img src="/media/universe-2.jpg" alt="">
+        <img src="/media/universe-3.jpg" alt="">
+
+        <div class="pj-section">
+            <span class="pj-section__label">Reflection</span>
+            <p class="pj-section__body">The decision to work across media — shooting on film, scanning prints, manipulating digitally, and printing again — introduced generation loss as an intentional design element. Each layer of translation distorted the original a little more.</p>
+        </div>
+
+        <img src="/media/universe-4.jpg" alt="">
+        <img src="/media/universe-6.jpg" alt="">
+        <img src="/media/universe-5.jpg" alt="">
+
+    </div>
+
+    <div class="pj-end">
+        <a href="/projects/inout.html" class="pj-end__link">
+            <span class="pj-end__label">Previous</span>
+            <span class="pj-end__name">← Inside Out</span>
+        </a>
+        <a href="/projects/habit.html" class="pj-end__link pj-end__link--next">
+            <span class="pj-end__label">Next</span>
+            <span class="pj-end__name">With Habit →</span>
+        </a>
+    </div>
+
+    <button class="pj-back" onclick="history.length > 1 ? history.back() : window.location.href='/projects/index.html'" aria-label="Go back"><span>←</span></button>
+
+    <div class="contact-widget">
+        <div class="contact-widget__popup">
+            <p class="contact-widget__caption">↗ Open Links</p>
+            <div class="contact-widget__menu">
+                <span class="contact-widget__slider"></span>
+                <a href="mailto:briannalou453@gmail.com" class="contact-widget__link">Email</a>
+                <a href="https://instagram.com/bri_l85" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="#" class="contact-widget__link">Portfolio</a>
+                <a href="/media/resume%20product.pdf" class="contact-widget__link" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
+        </div>
+        <button class="contact-widget__trigger" type="button" aria-label="Open contact menu" aria-expanded="false"><span>BL</span></button>
+    </div>
+
+    <script src="/data.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>
