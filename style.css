@@ -120,6 +120,7 @@ img {
     box-sizing: border-box;
     white-space: nowrap;
     overflow: hidden;
+    background: #ffffff5f;
 }
 .pill-nav__slider {
     position: absolute;
@@ -217,8 +218,10 @@ article a {
     transform: translateY(0);
 }
 .contact-widget__caption {
-    color: var(--for);
-    font-size: 11pt;
+    width: 100%;
+    text-align: center;
+    color: var(--sev);
+    font-size: 10pt;
     line-height: 1.2;
     margin: 0;
     padding: 0;
@@ -231,6 +234,7 @@ article a {
     border: 1px solid var(--pri);
     border-radius: 10px;
     overflow: hidden;
+    background: #ffffff5f;
 }
 .contact-widget__slider {
     position: absolute;
@@ -318,13 +322,14 @@ article a {
 /* Media Queries */
 @media screen and (max-width: 720px) {
     .pill-nav a { font-size: 12pt; }
-    .contact-widget__trigger span, .contact-widget__caption, .contact-widget__link { font-size: 12pt; }
+    .contact-widget__trigger span, .contact-widget__link { font-size: 12pt; }
     #pdbox {
         grid-template-columns: 1fr;
         gap: 20px;
     }
 }
 @media screen and (max-width: 480px) {
+    .pill-nav { bottom: 40px; }
     p {
         font-size: 20pt;
         font-weight: 400;

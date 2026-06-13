@@ -269,7 +269,7 @@
 /* Compact floating area on mobile */
 @media screen and (max-width: 680px) {
 
-    .about-orbit { min-height: 750px; }
+    .about-orbit { min-height: 700px; }
 
     .img-blob--a { animation: none; }
     .img-blob--b { animation: none; }
