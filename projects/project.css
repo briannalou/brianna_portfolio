@@ -108,11 +108,23 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 2px;
 }
-
 .pj-gallery__half img {
     width: 100%;
     display: block;
     aspect-ratio: 4 / 3;
+    object-fit: cover;
+    image-rendering: auto;
+}
+
+.pj-gallery__vertical {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+}
+.pj-gallery__vertical img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     image-rendering: auto;
 }

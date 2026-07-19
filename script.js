@@ -76,10 +76,138 @@
     });
     if (gridBtn) gridBtn.classList.toggle('active', currentView === 'grid');
     if (listBtn) listBtn.classList.toggle('active', currentView === 'list');
+    document.fonts.ready.then(function () { runMarquees(); setupGlimmer(); });
   }
 
   if (gridBtn) gridBtn.addEventListener('click', () => renderProjects('grid'));
   if (listBtn) listBtn.addEventListener('click', () => renderProjects('list'));
+
+  function runMarquees() {
+    var selector = currentView === 'grid'
+      ? '.work .desc h3'
+      : '.work .meta p';
+
+    container.querySelectorAll(selector).forEach(function (el) {
+      var track = el.querySelector('.title-track');
+      var originalText;
+
+      if (track) {
+        // Already initialised: recover original text from the single primary span
+        originalText = track.firstElementChild.textContent;
+        // Remove any clone that was added on a previous run
+        var staleClone = track.querySelector('[aria-hidden="true"]');
+        if (staleClone) staleClone.remove();
+        // Clear animation state so measurement is unaffected
+        track.classList.remove('is-scrolling');
+        track.style.removeProperty('--marquee-offset');
+        track.style.removeProperty('--marquee-duration');
+      } else {
+        // Fresh element: plain text, wrap in a single-span track
+        originalText = el.textContent.trim();
+        el.innerHTML = '';
+
+        track = document.createElement('span');
+        track.className = 'title-track';
+
+        var primary = document.createElement('span');
+        primary.textContent = originalText;
+        track.appendChild(primary);
+        el.appendChild(track);
+      }
+
+      // Measure with exactly one copy present — no clone bias
+      var singleCopy = track.firstElementChild;
+      var containerW = el.clientWidth;
+      var textW = singleCopy.offsetWidth;
+
+      // Title fits: leave it static, do not create a clone
+      if (textW <= containerW) return;
+
+      // Title overflows: add clone and start marquee
+      var clone = document.createElement('span');
+      clone.setAttribute('aria-hidden', 'true');
+      clone.textContent = originalText;
+      track.appendChild(clone);
+
+      var gapPx = parseFloat(getComputedStyle(track).columnGap) || 32;
+      var offset = textW + gapPx;
+      var duration = Math.max(4, offset / 50);
+
+      track.style.setProperty('--marquee-offset', '-' + offset + 'px');
+      track.style.setProperty('--marquee-duration', duration + 's');
+      track.classList.add('is-scrolling');
+    });
+  }
+
+  var glimmerTimers = [];
+
+  function clearGlimmer() {
+    glimmerTimers.forEach(function (id) { clearTimeout(id); clearInterval(id); });
+    glimmerTimers = [];
+  }
+
+  function setupGlimmer() {
+    clearGlimmer();
+    if (currentView !== 'grid') return;
+
+    var CYCLE_MS  = 7000;   // ms between each flash
+    var HOLD_MS   = 1500;    // ms to hold at full color
+    var TRANS_MS  = 500;    // fade in/out duration
+    var HOVER_MS  = 250;    // hover transition duration
+
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    container.querySelectorAll('.work').forEach(function (work) {
+      var img = work.querySelector('img');
+      if (!img) return;
+
+      var hovering = false;
+
+      work.addEventListener('mouseenter', function () {
+        hovering = true;
+        img.style.transition = 'filter ' + HOVER_MS + 'ms ease';
+        img.style.filter = 'grayscale(0%)';
+      });
+
+      work.addEventListener('mouseleave', function () {
+        hovering = false;
+        img.style.transition = 'filter ' + HOVER_MS + 'ms ease';
+        img.style.filter = 'grayscale(100%)';
+      });
+
+      if (reducedMotion) return;
+
+      function doFlash() {
+        if (hovering) return;
+        img.style.transition = 'filter ' + TRANS_MS + 'ms ease';
+        img.style.filter = 'grayscale(0%)';
+        setTimeout(function () {
+          if (!hovering) {
+            img.style.transition = 'filter ' + TRANS_MS + 'ms ease';
+            img.style.filter = 'grayscale(100%)';
+          }
+        }, HOLD_MS);
+      }
+
+      var delay = Math.random() * CYCLE_MS;
+      var t1 = setTimeout(function () {
+        doFlash();
+        var t2 = setInterval(doFlash, CYCLE_MS);
+        glimmerTimers.push(t2);
+      }, delay);
+      glimmerTimers.push(t1);
+    });
+  }
+
+  let resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(runMarquees, 200);
+  });
+
+  window.addEventListener('orientationchange', function () {
+    setTimeout(runMarquees, 350);
+  });
 
   renderFilters();
   renderProjects(currentView);
