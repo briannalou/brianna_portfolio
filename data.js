@@ -72,7 +72,7 @@ const projects = [
     alt: "In A Rainy Day cover image"
   },
   {
-    title: "Its Buisness",
+    title: "It's Buisness",
     time: "2025",
     categories: ["Digital, Print", "Illustration"],
     image: "/media/buisness.jpg",

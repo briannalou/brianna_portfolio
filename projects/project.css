@@ -97,7 +97,7 @@ body {
     gap: 2px;
 }
 
-.pj-gallery > img {
+.pj-gallery img, .pj-gallery video {
     width: 100%;
     display: block;
     image-rendering: auto;
@@ -108,7 +108,7 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 2px;
 }
-.pj-gallery__half img {
+.pj-gallery__half img, .pj-gallery__half video {
     width: 100%;
     display: block;
     aspect-ratio: 4 / 3;
@@ -121,7 +121,7 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 2px;
 }
-.pj-gallery__vertical img {
+.pj-gallery__vertical img, .pj-gallery__vertical video {
     width: 100%;
     display: block;
     aspect-ratio: 3 / 4;
