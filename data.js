@@ -18,7 +18,7 @@ const projects = [
   {
     title: "MoMA PSX",
     time: "2025",
-    categories: ["Branding", "Digital"],
+    categories: ["Branding", "Digital", "Motion"],
     image: "/media/psx-1.jpg",
     link: "/projects/psx.html",
     alt: "MoMA PSX cover image"
@@ -94,6 +94,14 @@ const projects = [
     image: "/media/one.png",
     link: "/projects/inout.html",
     alt: "Inside Out cover image"
+  },
+  {
+    title: "Fabric",
+    time: "2023",
+    categories: ["Digital", "Motion", "Film"],
+    image: "/media/fabric.jpg",
+    link: "/projects/fabric.html",
+    alt: "Fabric cover image"
   },
   {
     title: "Mirrored Universe",
