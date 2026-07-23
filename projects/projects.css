@@ -88,47 +88,42 @@
     display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
-    object-fit: cover;
+    padding: 16px;
+    object-fit: contain;
     image-rendering: auto;
-    transition: opacity 0.25s ease, filter 0.25s ease;
-    border-radius: 15px;
-    border: 1px solid var(--sev);
-    filter: grayscale(100%);
-}
-
-.grid-view .work:hover img {
-    filter: grayscale(0%);
+    transition: opacity 0.25s ease;
+    cursor: cell;
 }
 
 .grid-view .desc {
+    justify-content: center;
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
     gap: 8px;
-    padding: 4px 10px;
-    border: 1px solid var(--sev);
-    border-radius: 15px;
 }
 
 .grid-view .desc h3 {
     color: var(--for);
-    font-size: 28pt;
+    font-size: 14pt;
     font-weight: 400;
-    line-height: 34pt;
+    line-height: 18pt;
     margin: 0;
-    flex: 1;
     min-width: 0;
     overflow: hidden;
     white-space: nowrap;
+    padding: 4px 10px;
+    border: 1px solid var(--sev);
+    border-radius: 25px;
 }
 
 .grid-view .desc__year {
-    font-size: 28pt;
+    font-size: 14pt;
     font-weight: 400;
-    line-height: 34pt;
+    line-height: 18pt;
     color: var(--pri);
-    flex-shrink: 0;
     white-space: nowrap;
+    padding: 4px 10px;
+    border: 1px solid var(--sev);
+    border-radius: 25px;
 }
 
 /* ── List view ─────────────────────────────────────────────────────────── */
@@ -151,6 +146,7 @@
     text-decoration: none;
     overflow: visible;
     transition: background-color 0.15s ease;
+    cursor: cell;
 }
 
 .list-view .work:hover {

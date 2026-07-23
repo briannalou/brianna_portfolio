@@ -76,7 +76,7 @@
     });
     if (gridBtn) gridBtn.classList.toggle('active', currentView === 'grid');
     if (listBtn) listBtn.classList.toggle('active', currentView === 'list');
-    document.fonts.ready.then(function () { runMarquees(); setupGlimmer(); });
+    document.fonts.ready.then(runMarquees);
   }
 
   if (gridBtn) gridBtn.addEventListener('click', () => renderProjects('grid'));
@@ -136,66 +136,6 @@
       track.style.setProperty('--marquee-offset', '-' + offset + 'px');
       track.style.setProperty('--marquee-duration', duration + 's');
       track.classList.add('is-scrolling');
-    });
-  }
-
-  var glimmerTimers = [];
-
-  function clearGlimmer() {
-    glimmerTimers.forEach(function (id) { clearTimeout(id); clearInterval(id); });
-    glimmerTimers = [];
-  }
-
-  function setupGlimmer() {
-    clearGlimmer();
-    if (currentView !== 'grid') return;
-
-    var CYCLE_MS  = 7000;   // ms between each flash
-    var HOLD_MS   = 1500;    // ms to hold at full color
-    var TRANS_MS  = 500;    // fade in/out duration
-    var HOVER_MS  = 250;    // hover transition duration
-
-    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    container.querySelectorAll('.work').forEach(function (work) {
-      var img = work.querySelector('img');
-      if (!img) return;
-
-      var hovering = false;
-
-      work.addEventListener('mouseenter', function () {
-        hovering = true;
-        img.style.transition = 'filter ' + HOVER_MS + 'ms ease';
-        img.style.filter = 'grayscale(0%)';
-      });
-
-      work.addEventListener('mouseleave', function () {
-        hovering = false;
-        img.style.transition = 'filter ' + HOVER_MS + 'ms ease';
-        img.style.filter = 'grayscale(100%)';
-      });
-
-      if (reducedMotion) return;
-
-      function doFlash() {
-        if (hovering) return;
-        img.style.transition = 'filter ' + TRANS_MS + 'ms ease';
-        img.style.filter = 'grayscale(0%)';
-        setTimeout(function () {
-          if (!hovering) {
-            img.style.transition = 'filter ' + TRANS_MS + 'ms ease';
-            img.style.filter = 'grayscale(100%)';
-          }
-        }, HOLD_MS);
-      }
-
-      var delay = Math.random() * CYCLE_MS;
-      var t1 = setTimeout(function () {
-        doFlash();
-        var t2 = setInterval(doFlash, CYCLE_MS);
-        glimmerTimers.push(t2);
-      }, delay);
-      glimmerTimers.push(t1);
     });
   }
 

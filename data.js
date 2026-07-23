@@ -32,7 +32,7 @@ const projects = [
     alt: "Will cover image"
   },
   {
-    title: "Language of Birds",
+    title: "Listening To The Language of Birds",
     time: "2025",
     categories: ["Digital", "Print", "Poster"],
     image: "/media/listen.jpg",
