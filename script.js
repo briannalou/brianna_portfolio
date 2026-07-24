@@ -1,7 +1,8 @@
-/* theme init — runs before first paint */
-if (localStorage.getItem('theme') === 'dark') {
-    document.documentElement.classList.add('dark');
-}
+/* mode init — applied before first paint */
+(function () {
+    var m = localStorage.getItem('mix-mode');
+    if (m && m !== 'default') document.body.dataset.mix = m;
+})();
 
 /* gallery */
 (function () {
@@ -233,19 +234,32 @@ if (localStorage.getItem('theme') === 'dark') {
   }, msUntilNextMinute);
 })();
 
-/* mix / dark-mode toggle */
+/* mix / three-mode cycle: default → night → infinite → default */
 (function () {
-    const btn = document.createElement('button');
+    var MODES = ['default', 'night', 'infinite'];
+    var current = localStorage.getItem('mix-mode') || 'default';
+
+    function applyMode(mode) {
+        if (mode === 'default') {
+            delete document.body.dataset.mix;
+        } else {
+            document.body.dataset.mix = mode;
+        }
+        localStorage.setItem('mix-mode', mode);
+    }
+
+    var btn = document.createElement('button');
     btn.className = 'mix-btn';
-    btn.setAttribute('aria-label', 'Toggle dark mode');
-    const label = document.createElement('span');
+    btn.setAttribute('aria-label', 'Cycle visual mode');
+    var label = document.createElement('span');
     label.textContent = 'MIX';
     btn.appendChild(label);
     document.body.appendChild(btn);
 
-    btn.addEventListener('click', () => {
-        const isDark = document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    btn.addEventListener('click', function () {
+        var idx = MODES.indexOf(current);
+        current = MODES[(idx + 1) % MODES.length];
+        applyMode(current);
     });
 })();
 

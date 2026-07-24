@@ -25,14 +25,13 @@
 
 .filter-item {
     all: unset;
-    cursor: pointer;
+    cursor: cell;
     display: inline-block;
-    font-family: 'babel';
-    font-size: 10pt;
+    font-family: var(--font);
     line-height: 1;
-    color: var(--sev);
+    color: var(--sec);
     border: 1px solid var(--pri);
-    border-radius: 50px;
+    border-radius: var(--radius);
     padding: 5px 14px;
     white-space: nowrap;
     transition: color 0.15s ease, background-color 0.15s ease;
@@ -52,9 +51,8 @@
 }
 
 .filter-count {
-    font-size: 10pt;
     background-color: var(--pri);
-    border-radius: 25px;
+    border-radius: var(--radius);
     padding: 2px 8px;
 }
 
@@ -69,10 +67,9 @@
 #grid-view,
 #list-view {
     all: unset;
-    cursor: pointer;
-    font-family: 'babel';
-    font-size: 10pt;
-    color: var(--sev);
+    cursor: cell;
+    font-family: var(--font);
+    color: var(--sec);
     transition: color 0.15s ease;
 }
 
@@ -116,16 +113,13 @@
 
 .grid-view .desc h3 {
     color: var(--for);
-    font-size: 14pt;
-    font-weight: 400;
-    line-height: 18pt;
     margin: 0;
     min-width: 0;
     overflow: hidden;
     white-space: nowrap;
     padding: 4px 10px;
-    border: 1px solid var(--sev);
-    border-radius: 25px;
+    border: 1px solid var(--sec);
+    border-radius: var(--radius);
 }
 
 .grid-view .desc__year {
@@ -135,8 +129,8 @@
     color: var(--pri);
     white-space: nowrap;
     padding: 4px 10px;
-    border: 1px solid var(--sev);
-    border-radius: 25px;
+    border: 1px solid var(--sec);
+    border-radius: var(--radius);
 }
 
 /* ── List view ─────────────────────────────────────────────────────────── */
@@ -181,7 +175,7 @@
     white-space: nowrap;
     min-width: 0;
 }
-.list-view .meta h3 { color: var(--sev); }
+.list-view .meta h3 { color: var(--sec); }
 
 .list-view .hover-image {
     position: absolute;

@@ -1,19 +1,14 @@
 * { box-sizing: border-box }
 :root {
     --pri: #dddfd1;
-    --sec: #a8ace1;
+    --sec: #c9c9c9;
     --acc: #eeeeee;
     --for: #57543a;
     --six: #f0f0f0;
-    --sev: #c9c9c9;
     --space-normal: 20px;
     --space-vertical: 5px;
-}
-:root.dark {
-    --six: #161614;
-    --for: #cdc9b4;
-    --pri: #4a4d45;
-    --sev: #585652;
+    --radius:25px;
+    --font:'babel';
 }
 
 /* Fonts */
@@ -41,6 +36,20 @@
   font-weight: bold;
   font-style: italic;
 }
+@font-face {
+  font-family: "datatype";
+  src: url('fonts/Datatype-VariableFont_wdth,wght.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "segment";
+  src: url('fonts/Segment-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Base */
 body {
@@ -52,7 +61,8 @@ body {
     margin: 0;
     padding: var(--space-normal);
     font-family: 'babel';
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s ease, background-image 0s;
+    cursor: default;
 }
 hr {
     width: 100%;
@@ -85,7 +95,9 @@ h2 {
     margin: 0;
 }
 h3 {
-    font-size: 12pt;
+    font-size: 14pt;
+    line-height: 18pt;
+    font-weight: 400;
     padding: 0;
     margin: 0;
 }
@@ -100,6 +112,7 @@ a {
     font-size: 11pt;
     padding: 0;
     margin: 0;
+    cursor: cell;
 }
 img {
     width: 100%;
@@ -108,7 +121,7 @@ img {
     image-rendering: pixelated;
 }
 .title {
-    color: var(--sev);
+    color: var(--sec);
 }
 
 /* Navigation */
@@ -122,23 +135,20 @@ img {
     justify-content: center;
     align-items: center;
     border: 1px solid var(--pri);
-    border-radius: 50px;
+    border-radius: var(--radius);
     max-width: fit-content;
     box-sizing: border-box;
     white-space: nowrap;
     overflow: hidden;
     background: #ffffff5f;
-    transition: background-color 0.3s ease;
-}
-:root.dark .pill-nav {
-    background: rgba(22, 22, 20, 0.6);
+    transition: background-color 0.5s ease;
 }
 .pill-nav__slider {
     position: absolute;
     top: 0;
     bottom: 0;
-    border-radius: 50px;
-    background: var(--sev);
+    border-radius: var(--radius);
+    background: var(--sec);
     opacity: 0.7;
     pointer-events: none;
     transition: left 0.3s ease, width 0.3s ease;
@@ -238,7 +248,493 @@ article a {
     z-index: 1;
 }
 
-/* MIX / dark-mode toggle button */
+/* ================= NIGHT MODE ================= */
+
+/* --- Variables & base --- */
+body[data-mix="night"] {
+    --six: #0d0c0a;
+    --for: #c53636;
+    --pri: #242319;
+    --sev: #3e3d37;
+    --acc: #706e60;
+    --sec: #404370;
+    --font:'datatype';
+    --radius: 3px;
+    background-image: radial-gradient(
+        ellipse 55% 55% at center,
+        rgba(105, 90, 55, 0.10) 0%,
+        transparent 65%
+    );
+    background-size: 220% 220%;
+    animation: night-bg-drift 10s ease-in-out infinite;
+    font-family: 'datatype';
+    p {
+        font-size: 36pt;
+        line-height: 38pt;
+    }
+    h3 {
+        font-size: 24pt;
+        line-height: 20pt;
+    }
+}
+
+/* --- Ambient background drift --- */
+@keyframes night-bg-drift {
+    0%   { background-position: 20%  30%; }
+    25%  { background-position: 80%  15%; }
+    55%  { background-position: 55%  80%; }
+    80%  { background-position: 10%  60%; }
+    100% { background-position: 20%  30%; }
+}
+
+/* --- Shared motion keyframes --- */
+@keyframes night-float-a {
+    0%, 100% { transform: scale(1) translateY(0) translateX(0); }
+    50%       { transform: scale(1.018) translateY(-12px) translateX(8px); }
+}
+@keyframes night-float-b {
+    0%, 100% { transform: scale(1) translateY(0) translateX(0); }
+    50%       { transform: scale(1.016) translateY(12px) translateX(16px); }
+}
+@keyframes night-float-c {
+    0%, 100% { transform: scale(1.012) translateY(-8px) translateX(0); }
+    50%       { transform: scale(1) translateY(10px) translateX(4px); }
+}
+@keyframes night-float-text {
+    0%, 100% { transform: translateX(0);    }
+    35%       { transform: translateX(20px); }
+}
+@keyframes night-text-pulse {
+    0%, 100% { transform: scale(1.012) translateY(0) translateX(0); }
+    50%       { transform: scale(1) translateY(6px) translateX(4px); }
+}
+@keyframes night-breathe {
+    0%, 100% { transform: translateX(-50%) scale(1) translateY(0); opacity: 0.88; }
+    50%       { transform: translateX(-50%) scale(1.018) translateY(-6px); opacity: 1;    }
+}
+
+/* --- Nav: dark glass + slow breathing pulse --- */
+body[data-mix="night"] .pill-nav {
+    background: rgba(13, 12, 10, 0.78);
+    animation: night-breathe 0.8s ease-in-out infinite;
+}
+
+/* --- Filter bar: looser, more air --- */
+body[data-mix="night"] .pj-header {
+    padding-bottom: 32px;
+    gap: 20px;
+}
+body[data-mix="night"] #list {
+    gap: 15px;
+}
+body[data-mix="night"] .filter-item {
+    letter-spacing: 0.04em;
+    transform: translateX(0);
+    transition: color 0.45s ease-in-out, background-color 0.45s ease-in-out;
+    cursor: crosshair;
+}
+body[data-mix="night"] .filter-item:hover {
+    letter-spacing: 0.08em;
+    transform: translateX(4px);
+    transition: transform 0.3s ease-in-out;
+}
+body[data-mix="night"] .filter-count {
+    letter-spacing: 0.06em;
+    opacity: 0.6;
+    transform: translateX(0);
+    cursor: crosshair;
+}
+body[data-mix="night"] .filter-count:hover {
+    background-color: var(--for);
+    font-size: 11pt;
+    color: #0f0f0f;
+    opacity: 1;
+    transform: translateX(-8px);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* --- Project grid: 2-col, wider gaps, images float independently --- */
+body[data-mix="night"] .work-list.grid-view {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    padding-top: 4px;
+}
+
+/* Staggered float on each card's image — three distinct rhythms */
+body[data-mix="night"] .grid-view .work:nth-child(3n+1) img {
+    animation: night-float-a 0.8s ease-in-out infinite;
+}
+body[data-mix="night"] .grid-view .work:nth-child(3n+2) img {
+    animation: night-float-b 0.8s ease-in-out infinite;
+    animation-delay: -3.5s;
+}
+body[data-mix="night"] .grid-view .work:nth-child(3n) img {
+    animation: night-float-c 0.8s ease-in-out infinite;
+    animation-delay: -5.5s;
+}
+
+/* Card hover: pause the float, lift the whole card */
+body[data-mix="night"] .grid-view .work {
+    transition: transform 0.5s ease-in-out;
+}
+body[data-mix="night"] .grid-view .work:hover {
+    transform: translateY(-10px);
+}
+body[data-mix="night"] .grid-view .work:hover img {
+    animation-play-state: paused;
+    opacity: 1;
+    transition: opacity 0.45s ease-in-out;
+}
+
+/* Card labels */
+body[data-mix="night"] .grid-view .desc h3 {
+    letter-spacing: 0.03em;
+}
+body[data-mix="night"] .grid-view .desc__year {
+    color: var(--sec);
+}
+
+/* --- Project list view: taller rows, content slides right on hover --- */
+body[data-mix="night"] .work-list.list-view {
+    padding-top: 0;
+}
+body[data-mix="night"] .list-view .work {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    transition: padding-left 0.5s ease-in-out, background-color 0.45s ease-in-out;
+}
+body[data-mix="night"] .list-view .work:hover {
+    padding-left: 14px;
+}
+
+/* --- Homepage: article text slow pulse --- */
+body[data-mix="night"] article p {
+    animation: night-text-pulse 0.8s ease-in-out infinite;
+}
+
+/* --- Clock: slow horizontal drift --- */
+body[data-mix="night"] #ny-clock {
+    color: var(--for);
+    opacity: 0.65;
+    animation: night-float-text 0.8s ease-in-out infinite;
+}
+
+/* --- About name: same drift, different phase --- */
+body[data-mix="night"] .about-name {
+    animation: night-float-text 0.8s ease-in-out infinite;
+    animation-delay: -6s;
+}
+
+/* --- About links: more space, content slides on hover --- */
+body[data-mix="night"] .about-links {
+    margin-top: 16px;
+}
+body[data-mix="night"] .about-link {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    letter-spacing: 0.02em;
+    transition: opacity 0.45s ease-in-out, padding-left 0.5s ease-in-out;
+}
+body[data-mix="night"] .about-link:hover {
+    opacity: 0.5;
+    padding-left: 8px;
+}
+
+/* --- Small labels: spaced, pulled back --- */
+body[data-mix="night"] .pj-detail__label,
+body[data-mix="night"] .about-links__label,
+body[data-mix="night"] .pj-section__label,
+body[data-mix="night"] .pj-end__label {
+    letter-spacing: 0.09em;
+    opacity: 0.55;
+}
+
+/* --- Project detail: looser vertical rhythm --- */
+body[data-mix="night"] .pj-info {
+    padding-top: 52px;
+    padding-bottom: 60px;
+    gap: 26px;
+}
+body[data-mix="night"] .pj-section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    gap: 18px;
+}
+body[data-mix="night"] .pj-end {
+    margin-bottom: 180px;
+}
+body[data-mix="night"] .pj-end__link {
+    transition: opacity 0.45s ease-in-out;
+}
+body[data-mix="night"] .pj-end__link:hover {
+    opacity: 0.35;
+}
+
+/* --- Responsive — night --- */
+@media screen and (max-width: 860px) {
+    body[data-mix="night"] .work-list.grid-view {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 480px) {
+    body[data-mix="night"] .pill-nav {
+        animation: none;
+        transform: translateX(-50%);
+    }
+    body[data-mix="night"] .work-list.grid-view {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    body[data-mix="night"] .grid-view .work img,
+    body[data-mix="night"] article p,
+    body[data-mix="night"] #ny-clock,
+    body[data-mix="night"] .about-name {
+        animation: none;
+        transform: none;
+        opacity: 1;
+    }
+    body[data-mix="night"] #ny-clock {
+        opacity: 0.65;
+        color: var(--for);
+    }
+}
+
+
+/* ================= INFINITE MODE ================= */
+
+/* --- Variables & base --- */
+body[data-mix="infinite"] {
+    --six: #ffffff;
+    --for: #141414;
+    --pri: #c1c1c1;
+    --sev: #b1b1b1;
+    --acc: #a1a1a1;
+    --radius:0;
+    --font:'segment';
+    font-family: 'segment';
+    p {
+        font-size: 32pt;
+        font-weight: 100;
+        line-height: 32pt;
+        color: var(--sec);
+    }
+    h1 {
+        font-size: 32pt;
+        line-height: 32pt;
+    }
+    h2 {
+        font-size: 32pt;
+        line-height: 32pt;
+    }
+    h3 {
+        font-size: 32pt;
+        line-height: 32pt;
+    }
+}
+
+/* --- Shared motion keyframes --- */
+@keyframes inf-breathe {
+    0%, 100% { transform: scale(1);     }
+    50%       { transform: scale(1.004); }
+}
+
+/* --- Global: everything flows with long easing --- */
+body[data-mix="infinite"] .filter-item,
+body[data-mix="infinite"] .about-link,
+body[data-mix="infinite"] .grid-view .work,
+body[data-mix="infinite"] .list-view .work,
+body[data-mix="infinite"] .pj-end__link,
+body[data-mix="infinite"] .pj-back,
+body[data-mix="infinite"] .mix-btn,
+body[data-mix="infinite"] .char {
+    transition-duration: 0.75s;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Nav: clean, minimal glass --- */
+body[data-mix="infinite"] .pill-nav {
+    background: rgba(255, 255, 255, 0.92);
+}
+
+/* --- Filter bar: lots of space, borderless items --- */
+body[data-mix="infinite"] .pj-header {
+    padding-bottom: 44px;
+    gap: 24px;
+}
+body[data-mix="infinite"] #list {
+    gap: 16px;
+}
+body[data-mix="infinite"] .filter-item {
+    border-color: transparent;
+    color: var(--sec);
+    letter-spacing: 0.09em;
+    padding: 5px 18px;
+}
+body[data-mix="infinite"] .filter-item:hover {
+    color: var(--for);
+    border-color: transparent;
+}
+body[data-mix="infinite"] .filter-item.active {
+    color: var(--for);
+    background-color: transparent;
+    border-color: var(--pri);
+}
+body[data-mix="infinite"] .filter-count {
+    background-color: transparent;
+    color: var(--for);
+    padding: 0;
+}
+
+/* --- Project grid: 2-col, very generous gaps, soft hover fade --- */
+body[data-mix="infinite"] .work-list.grid-view {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+    padding-top: 20px;
+}
+
+/* Cards: barely-perceptible ambient breath */
+body[data-mix="infinite"] .grid-view .work img {
+    animation: inf-breathe 16s ease-in-out infinite;
+    transition: opacity 0.8s ease;
+}
+
+/* Hover: slow fade + barely-there lift */
+body[data-mix="infinite"] .grid-view .work:hover {
+    transform: translateY(-3px);
+    opacity: 0.72;
+}
+body[data-mix="infinite"] .grid-view .work:hover img {
+    animation-play-state: paused;
+}
+
+/* Card labels: clean, no borders, spaced */
+body[data-mix="infinite"] .grid-view .desc h3 {
+    border: none;
+    padding: 6px 4px;
+}
+body[data-mix="infinite"] .grid-view .desc__year {
+    border: none;
+    padding: 6px 4px;
+}
+
+/* --- Project list view: no borders, floating rows, much more space --- */
+body[data-mix="infinite"] .work-list.list-view {
+    border-top: none;
+    padding-top: 8px;
+}
+body[data-mix="infinite"] .list-view .work {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: none;
+}
+body[data-mix="infinite"] .list-view .work:hover {
+    background-color: transparent;
+    opacity: 0.42;
+}
+
+/* --- Homepage: more open, generous text --- */
+body[data-mix="infinite"] article {
+    padding-top: 8px;
+}
+body[data-mix="infinite"] #ny-clock {
+    margin-top: 28px;
+    color: var(--sec);
+}
+
+/* --- About: significantly more open layout --- */
+body[data-mix="infinite"] .about-layout {
+    padding-bottom: 240px;
+}
+body[data-mix="infinite"] .about-bio {
+    padding-bottom: 0;
+    gap: 20px;
+}
+body[data-mix="infinite"] .about-name {
+    opacity: 0.86;
+}
+body[data-mix="infinite"] .about-intro {
+    opacity: 0.6;
+}
+body[data-mix="infinite"] .about-links {
+    border-top: none;
+    padding-top: 16px;
+}
+body[data-mix="infinite"] .about-links__label {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    opacity: 0.6;
+}
+body[data-mix="infinite"] .about-link {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    border-top: none;
+}
+body[data-mix="infinite"] .about-link:hover {
+    opacity: 0.2;
+}
+
+/* --- Small labels: very wide tracking, very light --- */
+body[data-mix="infinite"] .pj-detail__label,
+body[data-mix="infinite"] .pj-section__label,
+body[data-mix="infinite"] .pj-end__label,
+body[data-mix="infinite"] .about-links__label,
+body[data-mix="infinite"] .pj-desc,
+body[data-mix="infinite"] .pj-end__link:hover {
+    opacity: 0.65;
+}
+
+/* --- Project detail: very open layout --- */
+body[data-mix="infinite"] .pj-info {
+    padding: 64px 24px 80px;
+    gap: 30px;
+}
+body[data-mix="infinite"] .pj-meta {
+    padding-top: 40px;
+    gap: 56px;
+    border-top-width: 0.5px;
+}
+body[data-mix="infinite"] .pj-section {
+    padding: 80px 24px;
+    gap: 20px;
+    border-top-width: 0.5px;
+}
+body[data-mix="infinite"] .pj-gallery {
+    gap: 4px;
+}
+body[data-mix="infinite"] .pj-end {
+    margin-bottom: 220px;
+    padding: 0 24px;
+    border-top-width: 0.5px;
+}
+
+/* --- Responsive — infinite --- */
+@media screen and (max-width: 860px) {
+    body[data-mix="infinite"] .work-list.grid-view {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+}
+@media screen and (max-width: 480px) {
+    body[data-mix="infinite"] .work-list.grid-view {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    body[data-mix="infinite"] .grid-view .work img {
+        animation: none;
+    }
+    body[data-mix="infinite"] .about-name {
+        letter-spacing: -2px;
+    }
+    body[data-mix="infinite"] .pj-info {
+        padding: 44px 20px 60px;
+    }
+    body[data-mix="infinite"] .pj-section {
+        padding: 56px 20px;
+    }
+}
+
+
+/* MIX / mode toggle button */
 .mix-btn {
     all: unset;
     box-sizing: border-box;
@@ -248,11 +744,11 @@ article a {
     z-index: 101;
     width: 44px;
     height: 44px;
-    border-radius: 50%;
+    border-radius: var(--radius);
     border: 1px solid var(--pri);
     background: var(--pri);
     opacity: 0.4;
-    cursor: pointer;
+    cursor: cell;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -265,7 +761,6 @@ article a {
 .mix-btn span {
     color: var(--for);
     font-size: 11pt;
-    font-family: 'babel';
 }
 
 /* Media Queries */

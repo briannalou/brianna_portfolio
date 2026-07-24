@@ -54,9 +54,8 @@
 }
 
 .about-links__label {
-    font-family: 'babel';
     font-size: 9pt;
-    color: var(--sev);
+    color: var(--sec);
     padding: 14px 0;
 }
 
@@ -64,13 +63,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 0;      /* ← link row height */
+    padding: 12px 0;
     border-top: 0.5px solid var(--pri);
     color: var(--for);
-    font-family: 'babel';
-    font-size: 13pt;
     text-decoration: none;
     transition: opacity 0.15s ease;
+    cursor: cell;
 }
 
 .about-link:hover {
@@ -78,7 +76,7 @@
 }
 
 .about-link__arrow {
-    color: var(--sev);
+    color: var(--sec);
     font-size: 11pt;
 }
 

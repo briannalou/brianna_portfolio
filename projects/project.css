@@ -45,10 +45,9 @@ body {
 .pj-tag {
     display: inline-block;
     color: var(--for);
-    font-family: 'babel';
     font-size: 10pt;
     border: 1px solid var(--pri);
-    border-radius: 50px;
+    border-radius: var(--radius);
     padding: 6px 14px;
     white-space: nowrap;
 }
@@ -78,13 +77,11 @@ body {
 }
 
 .pj-detail__label {
-    font-family: 'babel';
     font-size: 9pt;
-    color: var(--sev);
+    color: var(--sec);
 }
 
 .pj-detail__value {
-    font-family: 'babel';
     font-size: 12pt;
     line-height: 16pt;
     color: var(--for);
@@ -142,7 +139,7 @@ body {
 .pj-section__label {
     font-family: 'babel';
     font-size: 9pt;
-    color: var(--sev);
+    color: var(--sec);
 }
 
 .pj-section__body {
@@ -165,11 +162,11 @@ body {
     z-index: 101;
     width: 44px;
     height: 44px;
-    border-radius: 50%;
+    border-radius: var(--radius);
     border: 1px solid var(--pri);
     background: var(--pri);
     opacity: 0.4;
-    cursor: pointer;
+    cursor: cell;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -212,7 +209,7 @@ body {
 .pj-end__label {
     font-family: 'babel';
     font-size: 9pt;
-    color: var(--sev);
+    color: var(--sec);
 }
 
 .pj-end__name {
