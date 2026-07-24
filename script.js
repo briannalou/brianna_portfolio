@@ -1,3 +1,8 @@
+/* theme init — runs before first paint */
+if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark');
+}
+
 /* gallery */
 (function () {
   const container = document.querySelector('.work-list');
@@ -226,6 +231,22 @@
     update();
     setInterval(update, 60000);
   }, msUntilNextMinute);
+})();
+
+/* mix / dark-mode toggle */
+(function () {
+    const btn = document.createElement('button');
+    btn.className = 'mix-btn';
+    btn.setAttribute('aria-label', 'Toggle dark mode');
+    const label = document.createElement('span');
+    label.textContent = 'MIX';
+    btn.appendChild(label);
+    document.body.appendChild(btn);
+
+    btn.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
 })();
 
 /* pill nav */
