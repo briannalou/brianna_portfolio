@@ -25,21 +25,39 @@
     );
   }
 
+  function getCategoryCount(category) {
+    if (category === 'ALL') return projects.length;
+    return projects.filter(p =>
+      p.categories.some(c => c.toUpperCase() === category)
+    ).length;
+  }
+
   function renderFilters() {
     if (!filterContainer) return;
     filterContainer.innerHTML = '';
     getAllCategories().forEach(category => {
+      const group = document.createElement('div');
+      group.className = 'filter-group';
+
       const button = document.createElement('button');
       button.className = 'filter-item';
       button.type = 'button';
-      button.textContent = category;
       if (category === activeFilter) button.classList.add('active');
+      button.textContent = category;
+
+      const count = document.createElement('span');
+      count.className = 'filter-count';
+      count.textContent = getCategoryCount(category);
+
       button.addEventListener('click', () => {
         activeFilter = category;
         renderFilters();
         renderProjects(currentView);
       });
-      filterContainer.appendChild(button);
+
+      group.appendChild(button);
+      group.appendChild(count);
+      filterContainer.appendChild(group);
     });
   }
 
@@ -151,68 +169,6 @@
 
   renderFilters();
   renderProjects(currentView);
-})();
-
-/* contact widget */
-(function () {
-  const widget = document.querySelector('.contact-widget');
-  if (!widget) return;
-
-  const trigger = widget.querySelector('.contact-widget__trigger');
-  const popup   = widget.querySelector('.contact-widget__popup');
-  const menu    = widget.querySelector('.contact-widget__menu');
-  const slider  = widget.querySelector('.contact-widget__slider');
-  const links   = widget.querySelectorAll('.contact-widget__link');
-
-  let closeTimer;
-  let useHover = true;
-
-  function open() {
-    clearTimeout(closeTimer);
-    widget.classList.add('is-open');
-    trigger.setAttribute('aria-expanded', 'true');
-  }
-
-  function close() {
-    widget.classList.remove('is-open');
-    trigger.setAttribute('aria-expanded', 'false');
-  }
-
-  function scheduleClose() {
-    closeTimer = setTimeout(close, 150);
-  }
-
-  function placeSlider(el) {
-    slider.style.top    = el.offsetTop + 'px';
-    slider.style.height = el.offsetHeight + 'px';
-  }
-
-  slider.style.transition = 'none';
-  placeSlider(links[0]);
-  requestAnimationFrame(() => { slider.style.transition = ''; });
-
-  links.forEach(link => {
-    link.addEventListener('mouseenter', () => placeSlider(link));
-    link.addEventListener('touchstart',  () => placeSlider(link), { passive: true });
-  });
-  menu.addEventListener('mouseleave', () => placeSlider(links[0]));
-
-  trigger.addEventListener('touchstart', () => { useHover = false; }, { once: true, passive: true });
-
-  trigger.addEventListener('mouseenter', () => { if (useHover) open(); });
-  trigger.addEventListener('mouseleave', () => { if (useHover) scheduleClose(); });
-  popup.addEventListener('mouseenter',   () => { if (useHover) clearTimeout(closeTimer); });
-  popup.addEventListener('mouseleave',   () => { if (useHover) scheduleClose(); });
-
-  trigger.addEventListener('click', () => {
-    if (useHover) return;
-    widget.classList.contains('is-open') ? close() : open();
-  });
-
-  document.addEventListener('click', (e) => {
-    if (useHover) return;
-    if (!widget.contains(e.target)) close();
-  });
 })();
 
 /* reading reveal */

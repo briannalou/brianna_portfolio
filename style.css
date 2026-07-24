@@ -168,98 +168,6 @@ article a {
     opacity: 1;
 }
 
-/* Contact Widget */
-.contact-widget {
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    z-index: 101;
-}
-.contact-widget__trigger {
-    all: unset;
-    box-sizing: border-box;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid var(--pri);
-    background: var(--pri);
-    opacity: 0.4;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-.contact-widget__trigger:hover {
-    opacity: 1;
-    transition: opacity 0.2s ease;
-}
-.contact-widget__trigger span {
-    color: var(--for);
-    font-size: 11pt;
-    font-family: 'babel';
-}
-.contact-widget__popup {
-    position: absolute;
-    bottom: calc(44px + 8px);
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(6px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-.contact-widget.is-open .contact-widget__popup {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-}
-.contact-widget__caption {
-    width: 100%;
-    text-align: center;
-    color: var(--sev);
-    font-size: 10pt;
-    line-height: 1.2;
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
-}
-.contact-widget__menu {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--pri);
-    border-radius: 10px;
-    overflow: hidden;
-    background: #ffffff5f;
-}
-.contact-widget__slider {
-    position: absolute;
-    left: 0;
-    right: 0;
-    background: var(--sev);
-    opacity: 0.7;
-    pointer-events: none;
-    transition: top 0.25s ease, height 0.25s ease;
-}
-.contact-widget__link {
-    position: relative;
-    z-index: 1;
-    display: block;
-    padding: 6px clamp(12px, 2.5vw, 20px);
-    color: var(--for);
-    font-size: 11pt;
-    white-space: nowrap;
-    text-align: center;
-    transition: color 0.15s ease;
-}
-.contact-widget__link:hover {
-    color: var(--for);
-}
-
 /* Project Detail */
 #headimage {
     position: relative;
@@ -322,7 +230,6 @@ article a {
 /* Media Queries */
 @media screen and (max-width: 720px) {
     .pill-nav a { font-size: 12pt; }
-    .contact-widget__trigger span, .contact-widget__link { font-size: 12pt; }
     #pdbox {
         grid-template-columns: 1fr;
         gap: 20px;

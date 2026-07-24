@@ -45,6 +45,19 @@
     background-color: var(--pri);
 }
 
+.filter-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.filter-count {
+    font-size: 10pt;
+    background-color: var(--pri);
+    border-radius: 25px;
+    padding: 2px 8px;
+}
+
 /* ── View toggle ───────────────────────────────────────────────────────── */
 
 .pj-view {
