@@ -77,7 +77,12 @@
 
 .about-link__arrow {
     color: var(--sec);
+    font-size: 0; /* hide raw ↗ — iOS renders U+2197 as emoji without variation selector */
+}
+.about-link__arrow::after {
+    content: '\2197\FE0E'; /* ↗ + U+FE0E text presentation selector — forces non-emoji rendering */
     font-size: 11pt;
+    color: inherit;
 }
 
 /* ── Responsive ─────────────────────────────────────────────────────── */

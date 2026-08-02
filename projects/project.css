@@ -152,6 +152,43 @@ body {
     max-width: 640px;
 }
 
+/* ── Video sound toggle ─────────────────────────────────────────────── */
+.vid-wrap {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+/* Inherits border / background / opacity model from .pj-back + .mix-btn;
+   pill shape + padding for text label instead of fixed circle */
+.vid-sound {
+    all: unset;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--for);
+    border: 1px solid var(--pri);
+    background: var(--pri);
+    border-radius: var(--radius);
+    padding: 5px 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.vid-wrap:hover .vid-sound { opacity: 0.5; }
+.vid-sound:hover             { opacity: 1;   }
+
+/* Touch devices: no hover — keep button visible */
+@media (hover: none) {
+    .vid-sound { opacity: 0.5; }
+}
+
 /* ── Back button ───────────────────────────────────────────────────── */
 .pj-back {
     all: unset;
@@ -207,13 +244,11 @@ body {
 }
 
 .pj-end__label {
-    font-family: 'babel';
     font-size: 9pt;
     color: var(--sec);
 }
 
 .pj-end__name {
-    font-family: 'babel';
     font-size: 22pt;
     line-height: 26pt;
     color: var(--for);

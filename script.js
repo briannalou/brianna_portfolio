@@ -307,3 +307,41 @@
 
   nav.addEventListener('mouseleave', () => place(active));
 })();
+
+/* video sound toggle */
+(function () {
+    function hasAudio(video) {
+        if (typeof video.audioTracks !== 'undefined') return video.audioTracks.length > 0;
+        if (typeof video.mozHasAudio !== 'undefined') return video.mozHasAudio;
+        return true; // API unavailable — show button as safe default
+    }
+
+    document.querySelectorAll('video').forEach(function (video) {
+        // Wrap video in a relatively-positioned container for the button
+        var wrap = document.createElement('div');
+        wrap.className = 'vid-wrap';
+        video.parentNode.insertBefore(wrap, video);
+        wrap.appendChild(video);
+
+        // Build button — hidden until audio track is confirmed
+        var btn = document.createElement('button');
+        btn.className = 'vid-sound';
+        btn.textContent = 'Sound On';
+        btn.setAttribute('aria-pressed', 'false');
+        btn.style.display = 'none';
+        wrap.appendChild(btn);
+
+        // Reveal button only if the video has an audio track
+        video.addEventListener('loadedmetadata', function () {
+            if (hasAudio(video)) btn.style.display = '';
+        });
+
+        // Toggle mute — each button controls only its own video
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            video.muted = !video.muted;
+            btn.textContent = video.muted ? 'Sound On' : 'Sound Off';
+            btn.setAttribute('aria-pressed', video.muted ? 'false' : 'true');
+        });
+    });
+})();

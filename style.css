@@ -546,6 +546,7 @@ body[data-mix="infinite"] .list-view .work,
 body[data-mix="infinite"] .pj-end__link,
 body[data-mix="infinite"] .pj-back,
 body[data-mix="infinite"] .mix-btn,
+body[data-mix="infinite"] .vid-sound,
 body[data-mix="infinite"] .char {
     transition-duration: 0.75s;
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
