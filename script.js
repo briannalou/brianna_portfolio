@@ -1,7 +1,44 @@
-/* mode init — applied before first paint */
+/* portrait image detection */
 (function () {
-    var m = localStorage.getItem('mix-mode');
-    if (m && m !== 'default') document.body.dataset.mix = m;
+  function detect(img) {
+    if (img.closest && img.closest('.pj-hero')) return;
+    if (!img.naturalWidth || img.naturalHeight <= img.naturalWidth) return;
+
+    // Gallery half-grid: swap container class so image shows at natural proportions
+    var galleryHalf = img.closest && img.closest('.pj-gallery__half');
+    if (galleryHalf) {
+      galleryHalf.classList.remove('pj-gallery__half');
+      galleryHalf.classList.add('pj-gallery__vertical');
+      return;
+    }
+
+    // Already in a vertical gallery container (manually placed): skip
+    if (img.closest && img.closest('.pj-gallery__vertical')) return;
+  }
+
+  function watch(img) {
+    if (img.complete && img.naturalWidth > 0) {
+      detect(img);
+    } else {
+      img.addEventListener('load', function () { detect(img); }, { once: true });
+    }
+  }
+
+  document.querySelectorAll('img').forEach(watch);
+
+  var mo = new MutationObserver(function (mutations) {
+    mutations.forEach(function (m) {
+      m.addedNodes.forEach(function (node) {
+        if (node.nodeType !== 1) return;
+        if (node.tagName === 'IMG') {
+          watch(node);
+        } else if (node.querySelectorAll) {
+          node.querySelectorAll('img').forEach(watch);
+        }
+      });
+    });
+  });
+  mo.observe(document.body, { childList: true, subtree: true });
 })();
 
 /* gallery */
@@ -100,81 +137,131 @@
     });
     if (gridBtn) gridBtn.classList.toggle('active', currentView === 'grid');
     if (listBtn) listBtn.classList.toggle('active', currentView === 'list');
-    document.fonts.ready.then(runMarquees);
   }
 
   if (gridBtn) gridBtn.addEventListener('click', () => renderProjects('grid'));
   if (listBtn) listBtn.addEventListener('click', () => renderProjects('list'));
 
-  function runMarquees() {
-    var selector = currentView === 'grid'
-      ? '.work .desc h3'
-      : '.work .meta p';
-
-    container.querySelectorAll(selector).forEach(function (el) {
-      var track = el.querySelector('.title-track');
-      var originalText;
-
-      if (track) {
-        // Already initialised: recover original text from the single primary span
-        originalText = track.firstElementChild.textContent;
-        // Remove any clone that was added on a previous run
-        var staleClone = track.querySelector('[aria-hidden="true"]');
-        if (staleClone) staleClone.remove();
-        // Clear animation state so measurement is unaffected
-        track.classList.remove('is-scrolling');
-        track.style.removeProperty('--marquee-offset');
-        track.style.removeProperty('--marquee-duration');
-      } else {
-        // Fresh element: plain text, wrap in a single-span track
-        originalText = el.textContent.trim();
-        el.innerHTML = '';
-
-        track = document.createElement('span');
-        track.className = 'title-track';
-
-        var primary = document.createElement('span');
-        primary.textContent = originalText;
-        track.appendChild(primary);
-        el.appendChild(track);
-      }
-
-      // Measure with exactly one copy present — no clone bias
-      var singleCopy = track.firstElementChild;
-      var containerW = el.clientWidth;
-      var textW = singleCopy.offsetWidth;
-
-      // Title fits: leave it static, do not create a clone
-      if (textW <= containerW) return;
-
-      // Title overflows: add clone and start marquee
-      var clone = document.createElement('span');
-      clone.setAttribute('aria-hidden', 'true');
-      clone.textContent = originalText;
-      track.appendChild(clone);
-
-      var gapPx = parseFloat(getComputedStyle(track).columnGap) || 32;
-      var offset = textW + gapPx;
-      var duration = Math.max(4, offset / 50);
-
-      track.style.setProperty('--marquee-offset', '-' + offset + 'px');
-      track.style.setProperty('--marquee-duration', duration + 's');
-      track.classList.add('is-scrolling');
-    });
-  }
-
-  let resizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(runMarquees, 200);
-  });
-
-  window.addEventListener('orientationchange', function () {
-    setTimeout(runMarquees, 350);
-  });
-
   renderFilters();
   renderProjects(currentView);
+})();
+
+/* recent work on home page */
+(function () {
+  var list = document.getElementById('recent-list');
+  if (!list) return;
+
+  var sorted = projects.slice().sort(function (a, b) {
+    return Number(b.time) - Number(a.time);
+  });
+  var recent = sorted.slice(0, 3);
+
+  recent.forEach(function (project) {
+    var a = document.createElement('a');
+    a.className = 'recent-item';
+    if (project.link) a.href = project.link;
+    a.innerHTML =
+      '<div class="recent-meta">' +
+        '<span class="r-title">' + project.title + '</span>' +
+        '<span class="r-year">'  + project.time + '</span>' +
+        '<span class="r-cat">'   + project.categories.join(', ') + '</span>' +
+        '<span class="r-desc">'  + (project.desc || '') + '</span>' +
+      '</div>' +
+      '<img src="' + project.image + '" alt="' + project.title + '" loading="lazy">';
+    list.appendChild(a);
+  });
+})();
+
+/* home gallery — projects 4–10 */
+(function () {
+  var track = document.getElementById('hgal-track');
+  if (!track) return;
+
+  var sorted = projects.slice().sort(function (a, b) { return Number(b.time) - Number(a.time); });
+  var items = sorted.slice(3, 10);
+
+  if (items.length === 0) {
+    var section = track.closest('.home-gallery');
+    if (section) section.hidden = true;
+    return;
+  }
+
+  items.forEach(function (project) {
+    var a = document.createElement('a');
+    a.className = 'hgal-item';
+    if (project.link) a.href = project.link;
+    var img = document.createElement('img');
+    img.src = project.image;
+    img.alt = project.title;
+    img.loading = 'lazy';
+    a.appendChild(img);
+    track.appendChild(a);
+  });
+
+  var showAll = document.createElement('a');
+  showAll.className = 'hgal-item hgal-item--all';
+  showAll.href = '/projects/index.html';
+  showAll.textContent = 'Show all';
+  track.appendChild(showAll);
+
+  var gallery = track.closest('.home-gallery');
+
+  // Desktop only: convert vertical wheel to horizontal scroll on the gallery
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  gallery.addEventListener('wheel', function (e) {
+    // Trackpad horizontal swipe (deltaX dominant): let browser handle natively
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+
+    var atLeft  = track.scrollLeft <= 0;
+    var atRight = track.scrollLeft >= track.scrollWidth - track.clientWidth - 1;
+
+    // At a boundary scrolling further in the same direction: pass through to page
+    if ((e.deltaY < 0 && atLeft) || (e.deltaY > 0 && atRight)) return;
+
+    e.preventDefault();
+    track.scrollLeft += e.deltaY;
+  }, { passive: false });
+})();
+
+/* pj-end bottom nav — slide in when mouse nears screen bottom */
+(function () {
+  var pjEnd = document.querySelector('.pj-end');
+  if (!pjEnd) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  var THRESHOLD = 80;
+  var nearBottom = false;
+  var onNav = false;
+  var rafId = null;
+
+  function update() {
+    pjEnd.classList.toggle('is-visible', nearBottom || onNav);
+  }
+
+  document.addEventListener('mousemove', function (e) {
+    if (rafId) return;
+    rafId = requestAnimationFrame(function () {
+      rafId = null;
+      nearBottom = (window.innerHeight - e.clientY) <= THRESHOLD;
+      update();
+    });
+  });
+
+  document.addEventListener('mouseleave', function () {
+    nearBottom = false;
+    update();
+  });
+
+  pjEnd.addEventListener('mouseenter', function () {
+    onNav = true;
+    update();
+  });
+
+  pjEnd.addEventListener('mouseleave', function () {
+    onNav = false;
+    update();
+  });
 })();
 
 /* reading reveal */
@@ -201,7 +288,7 @@
   const observer = new IntersectionObserver(entries => {
     if (!entries[0].isIntersecting) return;
     chars.forEach((char, i) => {
-      setTimeout(() => char.classList.add('is-revealed'), i * 25);
+      setTimeout(() => char.classList.add('is-revealed'), i * 1);
     });
     observer.unobserve(article);
   }, { threshold: 0.1 });
@@ -234,35 +321,6 @@
   }, msUntilNextMinute);
 })();
 
-/* mix / three-mode cycle: default → night → infinite → default */
-(function () {
-    var MODES = ['default', 'night', 'infinite'];
-    var current = localStorage.getItem('mix-mode') || 'default';
-
-    function applyMode(mode) {
-        if (mode === 'default') {
-            delete document.body.dataset.mix;
-        } else {
-            document.body.dataset.mix = mode;
-        }
-        localStorage.setItem('mix-mode', mode);
-    }
-
-    var btn = document.createElement('button');
-    btn.className = 'mix-btn';
-    btn.setAttribute('aria-label', 'Cycle visual mode');
-    var label = document.createElement('span');
-    label.textContent = 'MIX';
-    btn.appendChild(label);
-    document.body.appendChild(btn);
-
-    btn.addEventListener('click', function () {
-        var idx = MODES.indexOf(current);
-        current = MODES[(idx + 1) % MODES.length];
-        applyMode(current);
-    });
-})();
-
 /* pill nav */
 (function () {
   const nav = document.querySelector('.pill-nav');
@@ -271,10 +329,7 @@
   const slider = nav.querySelector('.pill-nav__slider');
   const links  = nav.querySelectorAll('a');
 
-  function place(el) {
-    slider.style.left  = el.offsetLeft + 'px';
-    slider.style.width = el.offsetWidth + 'px';
-  }
+  function place(el) {}
 
   function findActive() {
     const path = window.location.pathname;
@@ -296,9 +351,7 @@
   const active = findActive();
   active.classList.add('is-active');
 
-  slider.style.transition = 'none';
   place(active);
-  requestAnimationFrame(() => { slider.style.transition = ''; });
 
   links.forEach(link => {
     link.addEventListener('mouseenter', () => place(link));

@@ -198,6 +198,7 @@ function onItemClick(e){
 }
 
 function openPopover(anchorBtn){
+  popover.hidden = false;
   popover.setAttribute('aria-hidden', 'false');
   popover.dataset.open = 'true';
   anchorBtn.setAttribute('aria-expanded', 'true');
@@ -207,6 +208,7 @@ function openPopover(anchorBtn){
 
 function closePopover(){
   if (popover.dataset.open !== 'true') return;
+  popover.hidden = true;
   popover.setAttribute('aria-hidden', 'true');
   popover.dataset.open = 'false';
   if (currentAnchor) currentAnchor.setAttribute('aria-expanded', 'false');

@@ -2,7 +2,8 @@ const projects = [
   {
     title: "With Habit",
     time: "2026",
-    categories: ["Product", "Print"],
+    categories: ["Product", "Book"],
+    desc: "Habit-tracking app for building positive daily routines.",
     image: "/media/withhabit-1.jpg",
     link: "/projects/habit.html",
     alt: "With Habit cover image"
@@ -10,7 +11,8 @@ const projects = [
   {
     title: "Bad Habits",
     time: "2026",
-    categories: ["Digital", "Print", "Poster"],
+    categories: ["Poster"],
+    desc: "Typographic poster series exploring addictive behaviors.",
     image: "/media/bad-habits_Page_3.jpg",
     link: "/projects/bad-habits.html",
     alt: "Bad Habits cover image"
@@ -18,7 +20,8 @@ const projects = [
   {
     title: "MoMA PSX",
     time: "2025",
-    categories: ["Branding", "Digital", "Motion"],
+    categories: ["Branding", "Motion"],
+    desc: "Brand identity and motion design for a MoMA video game exhibition.",
     image: "/media/psx-1.jpg",
     link: "/projects/psx.html",
     alt: "MoMA PSX cover image"
@@ -26,7 +29,8 @@ const projects = [
   {
     title: "Will",
     time: "2025",
-    categories: ["Digital", "Print", "Poster"],
+    categories: ["Poster"],
+    desc: "Experimental poster exploring themes of willpower.",
     image: "/media/will.jpg",
     link: "/projects/will.html",
     alt: "Will cover image"
@@ -34,7 +38,8 @@ const projects = [
   {
     title: "Listening To The Language of Birds",
     time: "2025",
-    categories: ["Digital", "Print", "Poster"],
+    categories: ["Poster"],
+    desc: "Illustrated poster for a sound and nature listening event.",
     image: "/media/listen.jpg",
     link: "/projects/birds.html",
     alt: "Listening To The Language of Birds cover image"
@@ -42,7 +47,8 @@ const projects = [
   {
     title: "Echo",
     time: "2025",
-    categories: ["Connection", "Digital", "App"],
+    categories: ["App"],
+    desc: "Mobile app designed for reflective journaling and self-awareness.",
     image: "/media/echo-1.jpg",
     link: "/projects/echo.html",
     alt: "Echo cover image"
@@ -50,7 +56,8 @@ const projects = [
   {
     title: "Dream Room",
     time: "2025",
-    categories: ["Digital", "3D"],
+    categories: ["3D"],
+    desc: "3D spatial design exploring domestic ideals and interior dreaming.",
     image: "/media/desktop.jpg",
     link: "/projects/dream-room.html",
     alt: "Dream Room cover image"
@@ -58,7 +65,8 @@ const projects = [
   {
     title: "Upcyclo",
     time: "2025",
-    categories: ["Connection", "Digital", "Print"],
+    categories: ["Branding", "Book"],
+    desc: "Brand identity system for a circular economy marketplace.",
     image: "/media/upcyclo-1.jpg",
     link: "/projects/upcyclo.html",
     alt: "Upcyclo cover image"
@@ -66,7 +74,8 @@ const projects = [
   {
     title: "In A Rainy Day",
     time: "2025",
-    categories: ["Digital, Print", "Illustration"],
+    categories: ["Illustration"],
+    desc: "Illustration series capturing quiet moments in rainy weather.",
     image: "/media/rainybird.jpg",
     link: "/projects/rainy-day.html",
     alt: "In A Rainy Day cover image"
@@ -74,7 +83,8 @@ const projects = [
   {
     title: "It's Buisness",
     time: "2025",
-    categories: ["Digital, Print", "Illustration"],
+    categories: ["Illustration"],
+    desc: "Satirical illustration series on modern work culture.",
     image: "/media/buisness.jpg",
     link: "/projects/its-buisness.html",
     alt: "Its Buisness cover image"
@@ -82,7 +92,8 @@ const projects = [
   {
     title: "Music+",
     time: "2024",
-    categories: ["Media", "Digital", "App"],
+    categories: ["App"],
+    desc: "Music discovery app with mood-based curation and spatial audio.",
     image: "/media/music1.jpg",
     link: "/projects/music.html",
     alt: "Music+ cover image"
@@ -90,7 +101,8 @@ const projects = [
   {
     title: "Inside Out",
     time: "2023",
-    categories: ["Nature", "Digital"],
+    categories: ["Website"],
+    desc: "Interactive website built around emotional mapping and inner dialogue.",
     image: "/media/one.png",
     link: "/projects/inout.html",
     alt: "Inside Out cover image"
@@ -98,7 +110,8 @@ const projects = [
   {
     title: "Fabric",
     time: "2023",
-    categories: ["Digital", "Motion", "Film"],
+    categories: ["Motion"],
+    desc: "Motion piece exploring the texture and movement of woven fabric.",
     image: "/media/fabric.jpg",
     link: "/projects/fabric.html",
     alt: "Fabric cover image"
@@ -106,7 +119,8 @@ const projects = [
   {
     title: "Mirrored Universe",
     time: "2023",
-    categories: ["Film", "Digital", "Print"],
+    categories: ["Book", "Website"],
+    desc: "Book and website exploring parallel realities and self-reflection.",
     image: "/media/universe.jpg",
     link: "/projects/universe.html",
     alt: "Mirrored Universe cover image"

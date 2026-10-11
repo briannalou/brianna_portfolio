@@ -29,13 +29,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     togglePanelBtn.addEventListener('click', function() {
-      if (controlPanel.classList.contains('minimized')) {
-      
-        controlPanel.classList.remove('minimized');
+      const body = document.getElementById('control-panel-body');
+      if (body.hidden) {
+        body.hidden = false;
         togglePanelBtn.textContent = "–";
       } else {
-        
-        controlPanel.classList.add('minimized');
+        body.hidden = true;
         togglePanelBtn.textContent = "+";
       }
     });

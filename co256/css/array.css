@@ -1,72 +1,84 @@
-/**
-* @license
-*
-* Font Family: Array
-* Designed by: Frode Helland
-* URL: https://www.fontshare.com/fonts/array
-* © 2025 Indian Type Foundry
-*
-* Array Wide 
-* Array Regular 
-* Array Semibold 
-* Array SemiboldWide 
-* Array BoldWide 
-* Array Bold 
+/* co256/index.html — roll marquee + 3D carousel */
 
-*
-*/
-@font-face {
-  font-family: 'Array-Wide';
-  src: url('../fonts2/Array-Wide.woff2') format('woff2'),
-       url('../fonts2/Array-Wide.woff') format('woff'),
-       url('../fonts2/Array-Wide.ttf') format('truetype');
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
+/* Header is at bottom of DOM; fix it to the top visually */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
 }
-@font-face {
-  font-family: 'Array-Regular';
-  src: url('../fonts2/Array-Regular.woff2') format('woff2'),
-       url('../fonts2/Array-Regular.woff') format('woff'),
-       url('../fonts2/Array-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Array-Semibold';
-  src: url('../fonts2/Array-Semibold.woff2') format('woff2'),
-       url('../fonts2/Array-Semibold.woff') format('woff'),
-       url('../fonts2/Array-Semibold.ttf') format('truetype');
-  font-weight: 600;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Array-SemiboldWide';
-  src: url('../fonts2/Array-SemiboldWide.woff2') format('woff2'),
-       url('../fonts2/Array-SemiboldWide.woff') format('woff'),
-       url('../fonts2/Array-SemiboldWide.ttf') format('truetype');
-  font-weight: 600;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Array-BoldWide';
-  src: url('../fonts2/Array-BoldWide.woff2') format('woff2'),
-       url('../fonts2/Array-BoldWide.woff') format('woff'),
-       url('../fonts2/Array-BoldWide.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Array-Bold';
-  src: url('../fonts2/Array-Bold.woff2') format('woff2'),
-       url('../fonts2/Array-Bold.woff') format('woff'),
-       url('../fonts2/Array-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-  font-style: normal;
+body {
+  padding-top: var(--nav-h, 48px);
+  overflow: hidden;
 }
 
+/* Roll marquee */
+.roll {
+  overflow: hidden;
+  border-bottom: 1px solid var(--border, #e0e0e0);
+  padding: var(--s2, 8px) 0;
+  white-space: nowrap;
+}
+.roll-track {
+  display: inline-flex;
+  gap: 48px;
+  animation: roll-loop 28s linear infinite;
+}
+.roll-track h2 {
+  font-size: var(--sm, 12px);
+  font-weight: 400;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@keyframes roll-loop {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
+}
+
+/* Carousel stage */
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - var(--nav-h, 48px) - 36px);
+}
+.carousel {
+  perspective: 1400px;
+  width: 100%;
+  height: 320px;
+}
+.deck {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+.card {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 180px;
+  height: 260px;
+  background: var(--bg, #fff);
+  border: 1px solid var(--border, #e0e0e0);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: opacity 0.3s;
+}
+.card[data-depth="front"] { opacity: 1; }
+.card[data-depth="mid"]   { opacity: 0.45; }
+.card[data-depth="back"]  { opacity: 0.15; }
+
+.card-inner {
+  text-align: center;
+  font-size: var(--lg, 15px);
+  font-weight: 500;
+  line-height: 1.4;
+  pointer-events: none;
+}
+.card-inner small {
+  display: block;
+  font-size: var(--xl, 18px);
+  margin-top: var(--s2, 8px);
+  font-weight: 300;
+}
