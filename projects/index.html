@@ -10,22 +10,45 @@
 <body>
     <nav class="pill-nav">
         <span class="pill-nav__slider"></span>
-        <a href="/index.html">Brianna Lou</a>
+        <a href="/index.html">BRI L.</a>
         <a href="/projects/index.html">All Projects</a>
         <a href="/about/index.html">About</a>
     </nav>
 
-    <header class="pj-header">
-        <div class="pj-controls">
-            <div id="list"></div>
-            <div class="pj-view">
-                <button id="grid-view" type="button">Grid</button>
-                <button id="list-view" type="button">List</button>
+    <main class="ap">
+        <aside class="ap-index">
+            <div class="ap-group" data-group="main">
+                <p class="section-label">Selected</p>
+                <ul class="ap-list" id="ap-list-main"></ul>
             </div>
-        </div>
-    </header>
+            <div class="ap-group" data-group="small">
+                <p class="section-label">Archive</p>
+                <ul class="ap-list" id="ap-list-small"></ul>
+            </div>
+        </aside>
 
-    <div class="work-list"></div>
+        <div class="ap-media">
+            <div class="ap-group ap-main" id="ap-media-main" data-group="main"></div>
+            <div class="ap-group ap-small" id="ap-media-small" data-group="small"></div>
+        </div>
+    </main>
+
+    <dialog class="ap-modal" aria-labelledby="ap-modal-title">
+        <div class="ap-modal__inner">
+            <button type="button" class="ap-modal__close">Close</button>
+            <div class="ap-modal__media"><img alt="" loading="lazy"></div>
+            <div class="ap-modal__text">
+                <h2 class="pj-title" id="ap-modal-title"></h2>
+                <p class="ap-modal__time"></p>
+                <div class="pj-tags"></div>
+                <div class="ap-modal__desc"></div>
+            </div>
+            <nav class="pj-end" aria-label="Archive navigation">
+                <button type="button" class="pj-end__link" data-dir="prev">← Previous</button>
+                <button type="button" class="pj-end__link" data-dir="next">Next →</button>
+            </nav>
+        </div>
+    </dialog>
 
 
 <script src="/data.js"></script>
