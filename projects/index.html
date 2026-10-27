@@ -36,7 +36,7 @@
     <dialog class="ap-modal" aria-labelledby="ap-modal-title">
         <div class="ap-modal__inner">
             <button type="button" class="ap-modal__close">Close</button>
-            <div class="ap-modal__media"><img alt="" loading="lazy"></div>
+            <div class="ap-modal__media"><img alt="" loading="lazy"><video loop muted playsinline preload="metadata" hidden></video></div>
             <div class="ap-modal__text">
                 <h2 class="pj-title" id="ap-modal-title"></h2>
                 <p class="ap-modal__time"></p>
@@ -44,8 +44,8 @@
                 <div class="ap-modal__desc"></div>
             </div>
             <nav class="pj-end" aria-label="Archive navigation">
-                <button type="button" class="pj-end__link" data-dir="prev">← Previous</button>
-                <button type="button" class="pj-end__link" data-dir="next">Next →</button>
+                <button type="button" class="pj-end__link" data-dir="prev" aria-label="Previous">←<span class="pj-end__word"> Previous</span></button>
+                <button type="button" class="pj-end__link" data-dir="next" aria-label="Next"><span class="pj-end__word">Next </span>→</button>
             </nav>
         </div>
     </dialog>

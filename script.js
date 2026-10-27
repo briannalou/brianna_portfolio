@@ -184,6 +184,7 @@ function descText(desc) {
   // Archive modal (native <dialog> in projects/index.html)
   var modal  = document.querySelector('.ap-modal');
   var mImg   = modal.querySelector('.ap-modal__media img');
+  var mVideo = modal.querySelector('.ap-modal__media video');
   var mTitle = modal.querySelector('.pj-title');
   var mTime  = modal.querySelector('.ap-modal__time');
   var mTags  = modal.querySelector('.pj-tags');
@@ -198,6 +199,21 @@ function descText(desc) {
   function fill(project) {
     mImg.src = project.image;
     mImg.alt = project.title;
+    // Optional project.video replaces the image; the sound button is wrapped in by the video sound toggle
+    var vidBox = mVideo.parentNode.classList.contains('vid-wrap') ? mVideo.parentNode : mVideo;
+    mImg.hidden = !!project.video;
+    vidBox.hidden = !project.video;
+    mVideo.hidden = !project.video;
+    mVideo.muted = true;
+    if (project.video) {
+      if (mVideo.getAttribute('src') !== project.video) mVideo.src = project.video;
+      mVideo.setAttribute('aria-label', project.title);
+      mVideo.play().catch(function () {});
+    } else {
+      mVideo.pause();
+      mVideo.removeAttribute('src');
+      mVideo.load();
+    }
     mTitle.textContent = project.title;
     mTime.textContent = project.time;
     mTags.innerHTML = '';
@@ -288,6 +304,8 @@ function descText(desc) {
   function closeModal() {
     if (!modal.open) return;
     modal.classList.remove('is-open');
+    mVideo.pause();
+    mVideo.muted = true;
     closeTimer = setTimeout(function () {
       modal.close();
       modal.classList.remove('is-switching');
@@ -901,17 +919,21 @@ function descText(desc) {
         btn.style.display = 'none';
         wrap.appendChild(btn);
 
-        // Reveal button only if the video has an audio track
+        // Reveal button only if the video has an audio track (re-checked when the source changes)
         video.addEventListener('loadedmetadata', function () {
-            if (hasAudio(video)) btn.style.display = '';
+            btn.style.display = hasAudio(video) ? '' : 'none';
+        });
+
+        // Keep the label in sync when the video is muted from elsewhere (e.g. closing the modal)
+        video.addEventListener('volumechange', function () {
+            btn.textContent = video.muted ? 'Sound On' : 'Sound Off';
+            btn.setAttribute('aria-pressed', video.muted ? 'false' : 'true');
         });
 
         // Toggle mute — each button controls only its own video
         btn.addEventListener('click', function (e) {
             e.stopPropagation();
             video.muted = !video.muted;
-            btn.textContent = video.muted ? 'Sound On' : 'Sound Off';
-            btn.setAttribute('aria-pressed', video.muted ? 'false' : 'true');
         });
     });
 })();

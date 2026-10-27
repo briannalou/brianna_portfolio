@@ -300,11 +300,13 @@ button.ap-item { width: 100%; padding: 0; }
   align-items: center;
   justify-content: center;
 }
-.ap-modal__media img {
+.ap-modal__media img,
+.ap-modal__media video {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
+.ap-modal__media .vid-wrap { width: 100%; height: 100%; }
 .ap-modal__text {
   min-height: 0;
   overflow-y: auto;
@@ -677,8 +679,33 @@ button.ap-item { width: 100%; padding: 0; }
   :root { --modal-w: calc(100vw - var(--s4)); --modal-h: calc(100dvh - var(--s4)); }
   .ap-modal { overflow-y: auto; }
   .ap-modal__inner { height: auto; grid-template-columns: 1fr; grid-template-rows: none; gap: var(--s3); padding: var(--s4) var(--s3) var(--s3); }
-  .ap-modal__media img { height: auto; }
-  .ap-modal__text { overflow: visible; padding-top: 0; }
+  .ap-modal__media img,
+  .ap-modal__media video,
+  .ap-modal__media .vid-wrap { height: auto; }
+  .ap-modal__text { overflow: visible; padding-top: 0; padding-inline: var(--s4); }
+  /* Previous / Next: arrows pinned to both sides of the modal while it scrolls */
+  .ap-modal .pj-end {
+    position: fixed;
+    top: 50%;
+    left: calc(var(--s3) + var(--s1));
+    right: calc(var(--s3) + var(--s1));
+    transform: translateY(-50%);
+    padding: 0;
+    border-top: 0;
+    pointer-events: none;
+  }
+  .ap-modal .pj-end__link {
+    width: var(--s4);
+    height: var(--s4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    pointer-events: auto;
+  }
+  .ap-modal .pj-end__word { display: none; }
   :root { --board-h: 560px; --note-w: 150px; }
   :root { --note-media-w: 180px; }
 }

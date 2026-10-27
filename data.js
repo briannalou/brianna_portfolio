@@ -5,7 +5,7 @@ const projects = [
     categories: ["Product", "Website"],
     desc: [
       { text: "Music record site for quick edits and mixing." },
-      { text: "Live at", link: { text: "sooudd.com", url: "https://sooudd-studio.milijian53.chatgpt.site/" } }
+      { link: { text: "Visit site", url: "https://sooudd-studio.milijian53.chatgpt.site/" } }
     ],
     image: "/media/SoouDD.jpg",
     tags: ["Website", "Product"],
@@ -81,6 +81,7 @@ const projects = [
     categories: ["3D"],
     desc: "3D spatial design exploring domestic ideals and interior dreaming.",
     image: "/media/desktop.jpg",
+    video: "/media/desktopvd.webm",
     type: "small",
     tags: ["Digital", "3D"],
     tools: ["Blender", "Photoshop"],
@@ -129,13 +130,26 @@ const projects = [
     alt: "Music+ cover image"
   },
   {
+    title: "NYC Cleans",
+    time: "2023",
+    desc: [
+      { text: "A site for New York City Spring cleanup event series." },
+      { link: { text: "Visit site", url: "https://loub697.interactive.rodeo/studio/03_nyc-in-data/index.html" } }
+    ],
+    image: "/media/clean.jpg",
+    tags: ["Website"],
+    type: "small",
+    tools: ["API"],
+    alt: "NYC Cleans cover image"
+  },
+  {
     title: "Inside Out",
     time: "2023",
     categories: ["Website"],
     // desc can also be an array of paragraphs: { text, link: { text, url } } (link optional) — shown in the Archive modal
     desc: [
       { text: "Interactive website built around emotional mapping and inner dialogue." },
-      { text: "Placeholder: a second paragraph about the process.", link: { text: "Visit site", url: "https://example.com" } }
+      { link: { text: "Visit site", url: "https://loub697.interactive.rodeo/studio/02_elastic-collection/part_8/index.html" } }
     ],
     image: "/media/one.png",
     type: "small",
@@ -149,6 +163,7 @@ const projects = [
     categories: ["Motion"],
     desc: "Motion piece exploring the texture and movement of woven fabric.",
     image: "/media/fabric.jpg",
+    video: "/media/fabricae.webm",
     type: "small",
     tags: ["Digital", "Motion", "Film"],
     tools: ["After Effects", "Premiere Pro"],
@@ -163,6 +178,20 @@ const projects = [
     link: "/projects/universe.html",
     type: "main",
     alt: "Mirrored Universe cover image"
+  },
+  {
+    title: "In Praise of Shadows",
+    time: "2023",
+    categories: ["Website"],
+    desc: [
+      { text: "An immersive experience around the beauty of light and shadow." },
+      { link: { text: "Visit site", url: "https://loub697.interactive.rodeo/studio/01_stories_as_network/part4/index.html" } }
+    ],
+    image: "/media/Shadows.jpg",
+    type: "small",
+    tags: ["Website"],
+    tools: ["Figma"],
+    alt: "In Praise of Shadows cover image"
   }
 ];
 
